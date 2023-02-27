@@ -12,3 +12,14 @@
 | `az account list-locations -o table`                                 | List available regions                          |
 | `az aks get-versions --location eastus2 -o table`                    | List AKS versions by region                     |
 | `export MSYS_NO_PATHCONV=1`                                          | avoids the C:/Program Files/Git/ being appended |
+
+## PowerShell
+
+| Command                                                            | Description        |
+| ------------------------------------------------------------------ | ------------------ |
+| `Connect-AzAccount`                                                | -                  |
+| `Get-AzSubscription`                                               | -                  |
+| `Set-AzContext -Subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` | use subscriptionID |
+| `Get-AzContext`                                                    | -                  |
+| `Get-AzResourceGroup \| Format-Table`                              | -                  |
+| `Get-AzLocation \| Format-Table -Property Location, DisplayName`   | -                  |
