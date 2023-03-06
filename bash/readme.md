@@ -11,6 +11,12 @@
 | `az aks get-versions --location eastus2 -o table`                    | List AKS versions by region                     |
 | `export MSYS_NO_PATHCONV=1`                                          | avoids the C:/Program Files/Git/ being appended |
 
+## Index
+
+- [Create vnet peering][100]
+- [Create RG][101]
+- [Create App Registration][102]
+
 ## Create vnet peering
 
 ```bash
@@ -101,3 +107,6 @@ az role assignment create \
 - [MS | Learn | Register a client application using CLI and REST API][1]
 
 [1]: https://learn.microsoft.com/en-us/azure/healthcare-apis/register-application-cli-rest
+[100]: #create-vnet-peering
+[101]: #create-rg
+[102]: #create-app-registration
