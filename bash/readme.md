@@ -11,7 +11,7 @@
 | `az aks get-versions --location eastus2 -o table`                    | List AKS versions by region                     |
 | `export MSYS_NO_PATHCONV=1`                                          | avoids the C:/Program Files/Git/ being appended |
 
-## Create a vnet peering
+## Create vnet peering
 
 ```bash
 # ------------------------------------------------------------------------------------------------
