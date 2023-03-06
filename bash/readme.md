@@ -44,3 +44,60 @@ az network vnet peering create \
 --remote-vnet $VNET_1_ID \
 --allow-vnet-access
 ```
+
+## Create RG
+
+```bash
+sub_id='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';                          echo $sub_id      # must update
+app="appName";                                                          echo $app
+env="dev";                                                              echo $env
+rg_app_n="rg-$app-$env";                                                echo $rg_app_n
+l="eastus2";                                                            echo $l
+tags="project=bicephub env=$env architecture=$app";                     echo $tags
+
+az group create \
+--subscription $sub_id \
+--name $rg_app_n \
+--location $l \
+--tags $tags
+```
+
+## Create App Registration
+
+```bash
+sub_id='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';                          echo $sub_id      # must update
+rg_app_n="rg-appName";                                                  echo $rg_app_n
+app_registration_n="sc-rg-appName";                                     echo $app_registration_n
+
+# ------------------------------------------------------------------------------------------------
+# Create app registration
+# ------------------------------------------------------------------------------------------------
+az ad app create \
+--display-name $app_registration_n
+
+SC_APP_CLIENT_ID=$(az ad app create --display-name $app_registration_n --query appId --output tsv); echo $SC_APP_CLIENT_ID
+SC_APP_OBJECT_ID=$(az ad app show --id $SC_APP_CLIENT_ID --query id --output tsv); echo $SC_APP_OBJECT_ID
+
+# Create an AAD service principal
+az ad sp create \
+--id $SC_APP_OBJECT_ID
+
+# Look up a service principal
+SC_SP_OBJECT_ID=$(az ad sp show --id $SC_APP_CLIENT_ID --query id --output tsv); echo $SC_SP_OBJECT_ID
+
+# Get RG ID
+APP_RG_ID=$(az group show --subscription $sub_id --name $rg_app_n --query id -o tsv); echo $APP_RG_ID
+
+# Assign SC Contributor RBAC
+az role assignment create \
+--assignee $SC_SP_OBJECT_ID \
+--role "Contributor" \
+--scope $APP_RG_ID
+```
+
+### Additional Resources
+
+- App Registration
+- [MS | Learn | Register a client application using CLI and REST API][1]
+
+[1]: https://learn.microsoft.com/en-us/azure/healthcare-apis/register-application-cli-rest
