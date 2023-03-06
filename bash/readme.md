@@ -57,8 +57,8 @@ az network vnet peering create \
 sub_id='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';                          echo $sub_id      # must update
 app="appName";                                                          echo $app
 env="dev";                                                              echo $env
-rg_app_n="rg-$app-$env-$l";                                             echo $rg_app_n
 l="eastus2";                                                            echo $l
+rg_app_n="rg-$app-$env-$l";                                             echo $rg_app_n
 tags="project=bicephub env=$env architecture=$app";                     echo $tags
 
 az group create \
