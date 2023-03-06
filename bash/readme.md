@@ -68,6 +68,7 @@ az group create \
 sub_id='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';                          echo $sub_id      # must update
 rg_app_n="rg-appName";                                                  echo $app_rg
 app_registration_n="sc-rg-appName";                                     echo $app_registration_n
+
 # ------------------------------------------------------------------------------------------------
 # Create app registration
 # ------------------------------------------------------------------------------------------------
