@@ -25,9 +25,11 @@ on:
 #     - uses: actions/checkout@v3
 
 jobs:
-  triage:
+  deploy_to_dev:
     runs-on: ubuntu-latest
+    environment: dev
     steps:
+
     - uses: actions/checkout@v3
 
     - name: Login to ACR
