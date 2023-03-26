@@ -1,0 +1,70 @@
+on:
+  workflow_call:
+    inputs:
+      ENVIRONMENT:
+        required: true
+        type: string
+      RG_N:
+        required: true
+        type: string
+      MAIN_BICEP_FILE_PATH:
+        required: true
+        type: string
+      TEST_BICEP_FILE_FILE:
+        required: true
+        type: string
+      ACR_MODULE_N:
+        required: true
+        type: string
+    secrets:
+      ACR_LOGIN_SERVER:
+        required: true
+      ACR_USERNAME:
+        required: true
+      ACR_PASSWORD:
+        required: true
+      AZURE_CREDENTIALS:
+        required: true
+
+jobs:
+  deploy_to_dev:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.ENVIRONMENT }}
+    steps:
+
+    - uses: actions/checkout@v3
+
+    - name: Test Building Bicep Modules
+      uses: Azure/bicep-build-action@v1.0.0
+      with:
+        bicepFilePath: ${{ inputs.MAIN_BICEP_FILE_PATH }} # main.bicep
+
+      # Log into Azure
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Test Azure Resource Deployment
+    - name: Test Deploying Bicep Modules to Azure
+      uses: azure/arm-deploy@v1
+      with:
+        scope: resourcegroup
+        resourceGroupName: ${{ inputs.RG_N }}
+        deploymentMode: Incremental
+        template: ${{ inputs.TEST_BICEP_FILE_FILE }} # examples/examples.bicep
+        failOnStdErr: true
+
+    - name: Login to ACR
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.ACR_LOGIN_SERVER }}
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
+
+    - name: Publish bicep module to ACR
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.37.0
+        inlineScript: |
+          az bicep publish --file ${{ inputs.MAIN_BICEP_FILE_PATH }} --target br:${{ secrets.ACR_LOGIN_SERVER }}/bicep/modules/${{ inputs.ACR_MODULE_N }}:${{ github.sha }}
