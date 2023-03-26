@@ -52,7 +52,7 @@ jobs:
         scope: resourcegroup
         resourceGroupName: ${{ inputs.RG_N }}
         deploymentMode: Incremental
-        template: ${{ inputs.TEST_BICEP_FILE_FILE }}
+        template: ${{ inputs.TEST_BICEP_FILE_FILE }} # examples/examples.bicep
         failOnStdErr: true
 
     - name: Login to ACR
