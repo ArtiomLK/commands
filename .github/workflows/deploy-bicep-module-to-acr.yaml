@@ -46,7 +46,7 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # Test Azure Resource Deployment
-    - name: Test Deploying Bicep Modules on Azure
+    - name: Test Deploying Bicep Modules to Azure
       uses: azure/arm-deploy@v1
       with:
         scope: resourcegroup
