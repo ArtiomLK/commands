@@ -6,7 +6,7 @@
 ## Additional Resources
 
 - Key Vault
-- [MS | Docs | How to start using reusable workflows with GitHub Actions][3]
+- [GH | Blog | How to start using reusable workflows with GitHub Actions][3]
 
 [1]: bash/readme.md
 [2]: ps/readme.md
