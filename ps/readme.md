@@ -15,6 +15,7 @@
 - [Create vnet][101]
 - [Create snet][102]
 - [Create pip][103]
+- [Azure Firewall Premium Hands on Lab][6]
 
 ## Create rg
 
