@@ -5,7 +5,7 @@
 
 ## Additional Resources
 
-- GH
+- GitHub
 - [GH | Blog | How to start using reusable workflows with GitHub Actions][3]
 
 [1]: bash/readme.md
