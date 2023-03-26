@@ -1,0 +1,30 @@
+name: 'Deploy bicep module to ACR'
+description: 'Make sure you have the secrets: ACR_USERNAME and ACR_PASSWORD'
+
+inputs:
+  RG_N:
+    description: “Azure ResourceGroup name”
+    required: true
+  ACR_LOGIN_SERVER:
+    required: true
+  ACR_MODULE_N:
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v3
+
+    # - name: Login to ACR
+    #   uses: azure/docker-login@v1
+    #   with:
+    #     login-server: ${{ inputs.ACR_LOGIN_SERVER }}
+    #     username: ${{ secrets.ACR_USERNAME }}
+    #     password: ${{ secrets.ACR_PASSWORD }}
+
+    # - name: Publish bicep module to ACR
+    #   uses: azure/CLI@v1
+    #   with:
+    #     azcliversion: 2.37.0
+    #     inlineScript: |
+    #       az bicep publish --file main.bicep --target br:${{ inputs.ACR_LOGIN_SERVER }}/bicep/modules/${{inputs.ACR_MODULE_N}}:${{ github.sha }}
