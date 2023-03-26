@@ -81,3 +81,4 @@ $virtualNetwork | Set-AzVirtualNetwork
 [4]: https://docs.microsoft.com/en-us/powershell/module/az.network/add-azvirtualnetworksubnetconfig?view=azps-5.7.0
 [100]: #create-rg
 [101]: #create-vnet
+[102]: #create-snet
