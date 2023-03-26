@@ -13,6 +13,7 @@
 
 - [Create rg][100]
 - [Create vnet][101]
+- [Create snet][102]
 
 ## Create rg
 
@@ -36,8 +37,8 @@ Run the following commands in PowerShell to create an Azure Virtual Network
 ```PowerShell
 # Replace the following required Azure Virtual Network variables
 $vNet = @{
-    Name = 'your-vnet-name'
-    ResourceGroupName = 'your-rg-name'
+    Name = 'vNetName'
+    ResourceGroupName = 'rgName'
     Location = 'EastUS2'
     AddressPrefix = '10.0.0.0/16'
 }
@@ -46,16 +47,38 @@ $vNet = @{
 $virtualNetwork = New-AzVirtualNetwork @vnet
 ```
 
+## Create snet
+
+Run the following commands in PowerShell to add a subnet to an existing Azure Virtual Network
+
+```PowerShell
+# Gather our existing Azure vNet
+$vNet = Get-AzVirtualNetwork -Name 'vNetName' -ResourceGroup 'rgName'
+
+# Replace the following required Azure Virtual Network variables
+$subNet = @{
+    Name = 'snet-name'
+    AddressPrefix = 'your-address-prefix' #e.g. '10.0.0.0/24'
+}
+
+# Add the subnet to our Azure Virtual Network
+$virtualNetwork | Add-AzVirtualNetworkSubnetConfig -Name $subNet.Name -AddressPrefix $subNet.AddressPrefix
+$virtualNetwork | Set-AzVirtualNetwork
+```
+
 ## Additional Resources
 
 - [MS | Docs | Get-AzLocations][1]
 - [MS | Docs | New-AzResourceGroup][2]
 - [MS | Docs | New-AzVirtualNetwork][3]
+- [MS | Docs | Add-AzVirtualNetworkSubnetConfig][4]
 
 <!-- Reference Links -->
 
 [1]: https://docs.microsoft.com/en-us/powershell/module/az.resources/get-azlocation?view=azps-5.7.0
 [2]: https://docs.microsoft.com/en-us/powershell/module/az.resources/new-azresourcegroup?view=azps-5.7.0
 [3]: https://docs.microsoft.com/en-us/powershell/module/az.network/new-azvirtualnetwork?view=azps-5.7.0
+[4]: https://docs.microsoft.com/en-us/powershell/module/az.network/add-azvirtualnetworksubnetconfig?view=azps-5.7.0
 [100]: #create-rg
 [101]: #create-vnet
+[102]: #create-snet
