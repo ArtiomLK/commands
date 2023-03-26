@@ -1,6 +1,3 @@
-# name: 'Deploy bicep module to ACR'
-# description: 'Make sure you have the secrets: ACR_USERNAME and ACR_PASSWORD'
-
 on:
   workflow_call:
     inputs:
@@ -33,12 +30,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    # - name: Login to ACR
-    #   uses: azure/docker-login@v1
-    #   with:
-    #     login-server: ${{ inputs.ACR_LOGIN_SERVER }}
-    #     username: ${{ secrets.ACR_USERNAME }}
-    #     password: ${{ secrets.ACR_PASSWORD }}
+    - name: Login to ACR
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ inputs.ACR_LOGIN_SERVER }}
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
 
     # - name: Publish bicep module to ACR
     #   uses: azure/CLI@v1
