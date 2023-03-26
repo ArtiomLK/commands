@@ -5,10 +5,10 @@ inputs:
   RG_N:
     description: “Azure ResourceGroup name”
     required: true
-  ACR_LOGIN_SERVER:
-    required: true
-  ACR_MODULE_N:
-    required: true
+  # ACR_LOGIN_SERVER:
+  #   required: true
+  # ACR_MODULE_N:
+  #   required: true
 
 runs:
   using: 'composite'
