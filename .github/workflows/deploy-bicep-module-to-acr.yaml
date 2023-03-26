@@ -10,7 +10,7 @@ on:
       MAIN_BICEP_FILE_PATH:
         required: true
         type: string
-      TEST_BICEP_DEPLOYMENT_FILE:
+      TEST_BICEP_FILE_FILE:
         required: true
         type: string
       ACR_MODULE_N:
@@ -52,7 +52,7 @@ jobs:
         scope: resourcegroup
         resourceGroupName: ${{ inputs.RG_N }}
         deploymentMode: Incremental
-        template: ${{ inputs.TEST_BICEP_DEPLOYMENT_FILE }}
+        template: ${{ inputs.TEST_BICEP_FILE_FILE }}
         failOnStdErr: true
 
     - name: Login to ACR
