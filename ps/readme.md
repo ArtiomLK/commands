@@ -74,12 +74,12 @@ Run the following commands in PowerShell to create an Azure Public IP
 ```PowerShell
 # Replace the following required variables
 $PublicIpVars = @{
-    Name = "your-public-ip-700"
+    Name = "your-public-ip-name"
     Location = 'EastUS2'
     AllocationMethod = "Static"
     Sku = "Standard"
     Zone = "1", "2", "3"
-    ResourceGroupName = 'your-rg-name'
+    ResourceGroupName = 'rgName'
 }
 
 # Deploy a zone-redundant public IP
