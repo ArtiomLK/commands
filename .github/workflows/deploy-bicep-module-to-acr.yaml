@@ -1,18 +1,36 @@
-name: 'Deploy bicep module to ACR'
-description: 'Make sure you have the secrets: ACR_USERNAME and ACR_PASSWORD'
+# name: 'Deploy bicep module to ACR'
+# description: 'Make sure you have the secrets: ACR_USERNAME and ACR_PASSWORD'
 
-inputs:
-  RG_N:
-    description: “Azure ResourceGroup name”
-    required: true
+on:
+  workflow_call:
+    inputs:
+      RG_N:
+        required: true
+        type: string
+    secrets:
+      ACR_USERNAME:
+        required: true
+      ACR_PASSWORD:
+        required: true
+
+# inputs:
+#   RG_N:
+#     description: “Azure ResourceGroup name”
+#     required: true
   # ACR_LOGIN_SERVER:
   #   required: true
   # ACR_MODULE_N:
   #   required: true
 
-runs:
-  using: 'composite'
-  steps:
+# runs:
+#   using: 'composite'
+#   steps:
+#     - uses: actions/checkout@v3
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v3
 
     # - name: Login to ACR
