@@ -88,12 +88,13 @@ $PublicIp = New-AzPublicIpAddress @PublicIpVars
 
 ## Additional Resources
 
+- [ALK | Lab | Azure Firewall Premium][6]
 - [MS | Docs | Get-AzLocations][1]
 - [MS | Docs | New-AzResourceGroup][2]
 - [MS | Docs | New-AzVirtualNetwork][3]
 - [MS | Docs | Add-AzVirtualNetworkSubnetConfig][4]
 - [MS | Docs | New-AzPublicIpAddress][5]
--
+
 <!-- Reference Links -->
 
 [1]: https://docs.microsoft.com/en-us/powershell/module/az.resources/get-azlocation?view=azps-5.7.0
@@ -101,6 +102,7 @@ $PublicIp = New-AzPublicIpAddress @PublicIpVars
 [3]: https://docs.microsoft.com/en-us/powershell/module/az.network/new-azvirtualnetwork?view=azps-5.7.0
 [4]: https://docs.microsoft.com/en-us/powershell/module/az.network/add-azvirtualnetworksubnetconfig?view=azps-5.7.0
 [5]: https://docs.microsoft.com/en-us/powershell/module/az.network/new-azpublicipaddress?view=azps-5.7.0
+[6]: https://github.com/ArtiomLK/azure-firewall-premium-lab
 [100]: #create-rg
 [101]: #create-vnet
 [102]: #create-snet
