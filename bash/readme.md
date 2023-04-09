@@ -55,11 +55,11 @@ az network vnet peering create \
 
 ```bash
 sub_id='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';                          echo $sub_id      # must update
-app="appName";                                                          echo $app
+app="alz-bas";                                                          echo $app
 env="dev";                                                              echo $env
-l="eastus2";                                                            echo $l
-rg_app_n="rg-$app-$env-$l";                                             echo $rg_app_n
-tags="project=bicephub env=$env architecture=$app";                     echo $tags
+l="eastus";                                                             echo $l
+rg_n="rg-$app-$env-$l";                                                 echo $rg_n
+tags="project=bicephub env=$env architecture=alz";                      echo $tags
 
 az group create \
 --subscription $sub_id \
