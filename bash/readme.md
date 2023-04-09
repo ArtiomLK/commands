@@ -63,7 +63,7 @@ tags="project=bicephub env=$env architecture=alz";                      echo $ta
 
 az group create \
 --subscription $sub_id \
---name $rg_app_n \
+--name $rg_n \
 --location $l \
 --tags $tags
 ```
