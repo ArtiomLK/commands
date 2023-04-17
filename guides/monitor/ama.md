@@ -6,7 +6,7 @@
   - Install AMA Agent [Microsoft.Azure.Monitor.AzureMonitorWindowsAgent][12]
   - Uninstall Log Analytics Agent [Microsoft.EnterpriseCloud.Monitoring.MicrosoftMonitoringAgent][11]
   - Check Agent Duplicates
-    - `Heartbeat    | summarize max(TimeGenerated) by Computer, Category    | sort by Computer`
+    - `Heartbeat | summarize max(TimeGenerated) by Computer, Category | sort by Computer`
   - [Supported operating systems][8]
   - [Install the AMA agent and configure data collection AMA][6]
   - [Enable automatic upgrade VM-> Extensions + Applications -> AzureMonitorWindowsAgent ->  click on Enable automatic upgrade][7]
