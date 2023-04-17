@@ -3,8 +3,8 @@
 ## Enable Monitoring Agent on Azure VMs
 
 - Validate all requirements
-  - [Azure Monitor Agent Supported operating systems][3]
-  - [Azure Monitor Agent Prerequisites][1]
+  - [Supported operating systems][3]
+  - [Prerequisites][1]
 - Install [Azure Monitor Agent][4]
   - [Install the AMA (Microsoft.Azure.Monitor.AzureMonitorWindowsAgent) agent and configure data collection AMA][6]
   - [Enable automatic upgrade VM -> Extensions + Applications -> AzureMonitorWindowsAgent ->  click on Enable automatic upgrade][7]
