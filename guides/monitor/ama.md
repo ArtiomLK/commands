@@ -8,12 +8,12 @@
   - [Performance diagnostics for Azure virtual machines | Supported operating systems][2]
 - Install [Azure Monitor Agent][4]
   - [Install the AMA (Microsoft.Azure.Monitor.AzureMonitorWindowsAgent) agent and configure data collection AMA][6]
-  - [Enable automatic upgrade VM-> Extensions + Applications -> AzureMonitorWindowsAgent ->  click on Enable automatic upgrade][7]
+  - [Enable automatic upgrade VM -> Extensions + Applications -> AzureMonitorWindowsAgent ->  click on Enable automatic upgrade][7]
 - Avoid Agent Duplicates costs
   - [Heartbeat | summarize max(TimeGenerated) by Computer, Category | sort by Computer][12]
   - Uninstalling Log Analytics Agent [Microsoft.EnterpriseCloud.Monitoring.MicrosoftMonitoringAgent][11]
     - Review Az policies that automate installing log agent
-    - Uninstall agent from `vm -> Extentions + applications`
+    - Uninstall agent from `vm -> Extensions + applications`
 - [Performance diagnostics for Azure virtual machines][8]
   - [Supported operating systems][9]
   - [Install and run performance diagnostics on your VM][10]
