@@ -8,6 +8,8 @@
   - [Performance diagnostics for Azure virtual machines | Supported operating systems][2]
 - [Azure Monitor Agent overview][4]
   - Avoid duplicate cost by uninstalling Log Analytics Agent [Microsoft.EnterpriseCloud.Monitoring.MicrosoftMonitoringAgent][11]
+    - Review Az policies that automate installing log agent
+    - uninstall agent from `vm -> Extentions + applications`
   - [Install the AMA agent and configure data collection AMA][6]
   - Install AMA Agent [Microsoft.Azure.Monitor.AzureMonitorWindowsAgent][12]
   - Check Agent Duplicates
