@@ -4,13 +4,14 @@
 
 - Validate all requirements
   - [Azure Monitor Agent Supported operating systems][3]
+  - [Azure Monitor Agent Prerequisites][1]
   - [Performance diagnostics for Azure virtual machines | Supported operating systems][2]
 - [Azure Monitor Agent overview][4]
+  - Avoid duplicate cost by uninstalling Log Analytics Agent [Microsoft.EnterpriseCloud.Monitoring.MicrosoftMonitoringAgent][11]
+  - [Install the AMA agent and configure data collection AMA][6]
   - Install AMA Agent [Microsoft.Azure.Monitor.AzureMonitorWindowsAgent][12]
-  - Uninstall Log Analytics Agent [Microsoft.EnterpriseCloud.Monitoring.MicrosoftMonitoringAgent][11]
   - Check Agent Duplicates
     - `Heartbeat | summarize max(TimeGenerated) by Computer, Category | sort by Computer`
-  - [Install the AMA agent and configure data collection AMA][6]
   - [Enable automatic upgrade VM-> Extensions + Applications -> AzureMonitorWindowsAgent ->  click on Enable automatic upgrade][7]
 - [Performance diagnostics for Azure virtual machines][8]
   - [Supported operating systems][9]
@@ -25,6 +26,7 @@
 - [MS | Learn | Manage Azure Monitor Agent | Update][7]
 - [MS | Learn | Migrate to Azure Monitor Agent from Log Analytics agent][5]
 
+[1]: https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=azure-portal#prerequisites
 [2]: https://learn.microsoft.com/en-us/troubleshoot/azure/virtual-machines/performance-diagnostics#supported-operating-systems
 [3]: https://learn.microsoft.com/en-us/azure/azure-monitor/agents/agents-overview#supported-operating-systems
 [4]: https://learn.microsoft.com/en-us/azure/azure-monitor/agents/agents-overview
