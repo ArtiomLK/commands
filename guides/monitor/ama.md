@@ -17,9 +17,8 @@
 ## Enable Performance diagnostics for Azure virtual machines
 
 - Validate all requirements
-  - [Performance diagnostics for Azure virtual machines | Supported operating systems][2]
-- [Performance diagnostics for Azure virtual machines][8]
   - [Supported operating systems][9]
+- Install [Performance diagnostics for Azure virtual machines][8]
   - [Install and run performance diagnostics on your VM][10]
 
 ## Additional Resources
@@ -32,7 +31,6 @@
 - [MS | Learn | Migrate to Azure Monitor Agent from Log Analytics agent][5]
 
 [1]: https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=azure-portal#prerequisites
-[2]: https://learn.microsoft.com/en-us/troubleshoot/azure/virtual-machines/performance-diagnostics#supported-operating-systems
 [3]: https://learn.microsoft.com/en-us/azure/azure-monitor/agents/agents-overview#supported-operating-systems
 [4]: https://learn.microsoft.com/en-us/azure/azure-monitor/agents/agents-overview
 [5]: https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-migration
