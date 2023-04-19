@@ -6,6 +6,7 @@
 ## Guides
 
 - [Enable Monitoring Agent on Azure VMs][4]
+- [Troubleshoot Network Connectivity][5]
 
 ## Additional Resources
 
@@ -16,3 +17,4 @@
 [2]: ps/readme.md
 [3]: https://github.blog/2022-02-10-using-reusable-workflows-github-actions/
 [4]: ./guides/monitor/ama.md
+[5]: ./guides/network/troubleshoot.md
