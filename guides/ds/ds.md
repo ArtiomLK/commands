@@ -5,6 +5,7 @@
 ### Azure Resources Diagnostic Settings
 
 - [NSG][2]
+- [LB][3]
 
 ## Additional Resources
 
@@ -13,3 +14,4 @@
 
 [1]: https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-monitoring-overview#view-diagnostic-logs-for-network-resources
 [2]: ./ds-nsg.md
+[3]: ./ds-lb.md
