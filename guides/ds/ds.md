@@ -7,6 +7,7 @@
 - [NSG][2]
 - [LB][3]
 - [NIC][6]
+- [VNET][7]
 
 ## Additional Resources
 
@@ -22,3 +23,4 @@
 [4]: https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/resource-logs-schema
 [5]: https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/resource-logs-categories
 [6]: ./ds-nic.md
+[7]: ./ds-vnet.md
