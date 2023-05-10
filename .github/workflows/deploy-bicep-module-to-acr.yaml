@@ -13,6 +13,10 @@ on:
       TEST_BICEP_FILE_FILE:
         required: true
         type: string
+      TEST_BICEP_FILE_PARAMETERS:
+        required: false
+        type: string
+        default: 'key=value'
       ACR_MODULE_N:
         required: true
         type: string
@@ -53,6 +57,7 @@ jobs:
         resourceGroupName: ${{ inputs.RG_N }}
         deploymentMode: Incremental
         template: ${{ inputs.TEST_BICEP_FILE_FILE }} # examples/examples.bicep
+        parameters: ${{ inputs.TEST_BICEP_FILE_PARAMETERS }}
         failOnStdErr: true
 
     - name: Login to ACR
