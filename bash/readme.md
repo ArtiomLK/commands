@@ -94,11 +94,17 @@ SC_SP_OBJECT_ID=$(az ad sp show --id $SC_APP_CLIENT_ID --query id --output tsv);
 # Get RG ID
 APP_RG_ID=$(az group show --subscription $sub_id --name $rg_app_n --query id -o tsv); echo $APP_RG_ID
 
-# Assign SC Contributor RBAC
+# OPTION 1 - Assign SC Contributor RBAC on RG
 az role assignment create \
 --assignee $SC_SP_OBJECT_ID \
 --role "Contributor" \
 --scope $APP_RG_ID
+
+# OPTION 2 - Assign SC Contributor RBAC on SUB
+az role assignment create \
+--assignee $SC_SP_OBJECT_ID \
+--role "Contributor" \
+--scope "/subscriptions/$sub_id"
 ```
 
 ### Additional Resources
