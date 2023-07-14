@@ -67,4 +67,4 @@ jobs:
       with:
         azcliversion: 2.37.0
         inlineScript: |
-          az bicep publish --file ${{ inputs.MAIN_BICEP_FILE_PATH }} --target br:${{ secrets.ACR_LOGIN_SERVER }}/bicep/modules/${{ inputs.ACR_MODULE_N }}:${{ github.sha }}
+          az bicep publish --file ${{ inputs.MAIN_BICEP_FILE_PATH }} --target br:${{ secrets.ACR_LOGIN_SERVER }}/bicep/modules/${{ inputs.ACR_MODULE_N }}:${{ github.sha }} --force
