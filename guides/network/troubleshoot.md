@@ -11,5 +11,7 @@ Test-NetConnection 10.10.10.1 -Port 3389 -InformationLevel "Detailed"
 
 - Network
 - [MS | Learn | Test-NetConnection][1]
+- [MS | Learn | What address ranges can I use in my VNets?][2]
 
 [1]: https://learn.microsoft.com/en-us/powershell/module/nettcpip/test-netconnection
+[2]: https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq#what-address-ranges-can-i-use-in-my-vnets

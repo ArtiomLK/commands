@@ -1,21 +1,23 @@
 # Bash
 
-| Command                                                              | Description                                     |
-| -------------------------------------------------------------------- | ----------------------------------------------- |
-| `az login`                                                           | login to azure with your account                |
-| `az account list --output table`                                     | display available subscription                  |
-| `az account set --subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` | use subscriptionID                              |
-| `az account show --output table`                                     | check the subscriptions currently in use        |
-| `az group list -o table`                                             | List all rg                                     |
-| `az account list-locations -o table`                                 | List available regions                          |
-| `az aks get-versions --location eastus2 -o table`                    | List AKS versions by region                     |
-| `export MSYS_NO_PATHCONV=1`                                          | avoids the C:/Program Files/Git/ being appended |
+| Command                                                                       | Description                                              |
+| ----------------------------------------------------------------------------- | -------------------------------------------------------- |
+| `az login`                                                                    | login to azure with your account                         |
+| `az account list --output table`                                              | display available subscription                           |
+| `az account set --subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`          | use subscriptionID                                       |
+| `az account show --output table`                                              | check the subscriptions currently in use                 |
+| `az group list -o table`                                                      | List all rg                                              |
+| `az account list-locations -o table`                                          | List available regions                                   |
+| `az aks get-versions --location eastus2 -o table`                             | List AKS versions by region                              |
+| `export MSYS_NO_PATHCONV=1`                                                   | avoids the C:/Program Files/Git/ being appended          |
+| `az vm list-skus --location centralus --size Standard_D --all --output table` | Determine which SKUs are available in a location or zone |
 
 ## Index
 
 - [Create vnet peering][100]
 - [Create RG][101]
 - [Create App Registration][102]
+- [Register Resource Provider][103]
 
 ## Create vnet peering
 
@@ -107,12 +109,44 @@ az role assignment create \
 --scope "/subscriptions/$sub_id"
 ```
 
+## Register Resource Provider
+
+```bash
+sub_id='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';                          echo $sub_id      # must update
+
+RESOURCE_PROVIDERS=(
+Microsoft.CognitiveServices
+Microsoft.Cdn
+Microsoft.Cache
+Microsoft.Network
+Microsoft.KeyVault
+Microsoft.Web
+Microsoft.Compute
+Microsoft.ContainerRegistry
+Microsoft.Storage
+microsoft.insights
+); echo ${RESOURCE_PROVIDERS[@]}
+
+for res_provider in "${RESOURCE_PROVIDERS[@]}"
+do
+  echo "Registering $res_provider"
+  az provider register --namespace $res_provider --subscription $sub_id
+done
+```
+
 ### Additional Resources
 
 - App Registration
 - [MS | Learn | Register a client application using CLI and REST API][1]
+- SKU not available
+- [MS | Learn | Resolve errors for SKU not available][2]
+- Register Resource Provider
+- [MS | Learn | az provider register][3]
 
 [1]: https://learn.microsoft.com/en-us/azure/healthcare-apis/register-application-cli-rest
+[2]: https://learn.microsoft.com/en-us/azure/azure-resource-manager/troubleshooting/error-sku-not-available
+[3]: https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-register
 [100]: #create-vnet-peering
 [101]: #create-rg
 [102]: #create-app-registration
+[103]: #register-resource-provider
