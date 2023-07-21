@@ -1,15 +1,16 @@
 # Bash
 
-| Command                                                              | Description                                     |
-| -------------------------------------------------------------------- | ----------------------------------------------- |
-| `az login`                                                           | login to azure with your account                |
-| `az account list --output table`                                     | display available subscription                  |
-| `az account set --subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` | use subscriptionID                              |
-| `az account show --output table`                                     | check the subscriptions currently in use        |
-| `az group list -o table`                                             | List all rg                                     |
-| `az account list-locations -o table`                                 | List available regions                          |
-| `az aks get-versions --location eastus2 -o table`                    | List AKS versions by region                     |
-| `export MSYS_NO_PATHCONV=1`                                          | avoids the C:/Program Files/Git/ being appended |
+| Command                                                                       | Description                                                 |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| `az login`                                                                    | login to azure with your account                            |
+| `az account list --output table`                                              | display available subscription                              |
+| `az account set --subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`          | use subscriptionID                                          |
+| `az account show --output table`                                              | check the subscriptions currently in use                    |
+| `az group list -o table`                                                      | List all rg                                                 |
+| `az account list-locations -o table`                                          | List available regions                                      |
+| `az aks get-versions --location eastus2 -o table`                             | List AKS versions by region                                 |
+| `export MSYS_NO_PATHCONV=1`                                                   | avoids the C:/Program Files/Git/ being appended             |
+| `az vm list-skus --location centralus --size Standard_D --all --output table` | Determine which SKUs are available in a location or zone |
 
 ## Index
 
@@ -111,8 +112,11 @@ az role assignment create \
 
 - App Registration
 - [MS | Learn | Register a client application using CLI and REST API][1]
+- SKU not available
+- [MS | Learn | Resolve errors for SKU not available][2]
 
 [1]: https://learn.microsoft.com/en-us/azure/healthcare-apis/register-application-cli-rest
+[2]: https://learn.microsoft.com/en-us/azure/azure-resource-manager/troubleshooting/error-sku-not-available
 [100]: #create-vnet-peering
 [101]: #create-rg
 [102]: #create-app-registration
