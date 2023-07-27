@@ -7,6 +7,10 @@
 Test-NetConnection 10.10.10.1 -Port 3389 -InformationLevel "Detailed"
 ```
 
+## Use Azure Network Watcher Connection Monitor to test connectivity
+
+```PowerShell
+
 ## Additional Resources
 
 - Network

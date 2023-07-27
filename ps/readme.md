@@ -16,6 +16,7 @@
 - [Create snet][102]
 - [Create pip][103]
 - [Azure Firewall Premium Hands on Lab][6]
+- [Azure Watcher Connection Monitor][104]
 
 ## Create rg
 
@@ -87,6 +88,56 @@ $PublicIpVars = @{
 $PublicIp = New-AzPublicIpAddress @PublicIpVars
 ```
 
+## Create an Azure Network Watcher Connection Monitor
+
+```PowerShell
+# Connect to your Azure account with the subscription
+Connect-AzAccount
+Select-AzSubscription -SubscriptionId <your-subscription>
+# Select region
+
+$nw = "NetworkWatcher_eastus"
+# Declare endpoints like Azure VM below. You can also give VNET,Subnet,Log Analytics workspace
+$sourcevmid1 = New-AzNetworkWatcherConnectionMonitorEndpointObject -AzureVM -Name MyAzureVm -ResourceID /subscriptions/<your-subscription>/resourceGroups/<your resourceGroup>/providers/Microsoft.Compute/virtualMachines/<vm-name>
+# Declare endpoints like URL, IPs
+$bingEndpoint = New-AzNetworkWatcherConnectionMonitorEndpointObject -ExternalAddress -Name Bing -Address www.bing.com # Destination URL
+
+# Create test configuration.Choose Protocol and parametersSample configs below.
+$icmpProtocolConfiguration = New-AzNetworkWatcherConnectionMonitorProtocolConfigurationObject -IcmpProtocol
+$tcpProtocolConfiguration = New-AzNetworkWatcherConnectionMonitorProtocolConfigurationObject -TcpProtocol -Port 80
+$httpProtocolConfiguration = New-AzNetworkWatcherConnectionMonitorProtocolConfigurationObject -HttpProtocol -Port 443 -Method GET -RequestHeader @{Allow = "GET"} -ValidStatusCodeRange 2xx, 300-308 -PreferHTTPS
+
+# Create test configuration with protocol configuration
+$httpTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name http-tc -TestFrequencySec 60 -ProtocolConfiguration $httpProtocolConfiguration -SuccessThresholdChecksFailedPercent 20 -SuccessThresholdRoundTripTimeMs 30
+$icmpTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name icmp-tc -TestFrequencySec 30 -ProtocolConfiguration $icmpProtocolConfiguration -SuccessThresholdChecksFailedPercent 5 -SuccessThresholdRoundTripTimeMs 500
+$tcpTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name tcp-tc -TestFrequencySec 60 -ProtocolConfiguration $tcpProtocolConfiguration -SuccessThresholdChecksFailedPercent 20 -SuccessThresholdRoundTripTimeMs 30
+
+# Create Test Group
+$testGroup1 = New-AzNetworkWatcherConnectionMonitorTestGroupObject -Name testGroup1 -TestConfiguration $httpTestConfiguration, $tcpTestConfiguration, $icmpTestConfiguration -Source $sourcevmid1 -Destination $bingEndpoint,
+$testname = "cmtest9"
+
+# Create Connection Monitor
+New-AzNetworkWatcherConnectionMonitor -NetworkWatcherName $nw -ResourceGroupName NetworkWatcherRG -Name $testname -TestGroup $testGroup1
+
+
+
+
+
+$ConnectionMonitorVars = @{
+    Name = "your-connection-monitor-name"
+    Location = 'EastUS2'
+    SourceResourceId = 'your-source-resource-id'
+    DestinationResourceId = 'your-destination-resource-id'
+    Tag = @{
+        "your-key" = "your-value"
+    }
+    ResourceGroupName = 'rgName'
+}
+
+# Create a connection monitor
+$ConnectionMonitor = New-AzNetworkWatcherConnectionMonitor @ConnectionMonitorVars
+```
+
 ## Additional Resources
 
 - [ALK | Lab | Azure Firewall Premium][6]
@@ -95,6 +146,8 @@ $PublicIp = New-AzPublicIpAddress @PublicIpVars
 - [MS | Docs | New-AzVirtualNetwork][3]
 - [MS | Docs | Add-AzVirtualNetworkSubnetConfig][4]
 - [MS | Docs | New-AzPublicIpAddress][5]
+- Connection Monitor
+- [MS | Learn | Create an Azure Network Watcher connection monitor using the Azure portal][7]
 
 <!-- Reference Links -->
 
@@ -104,7 +157,9 @@ $PublicIp = New-AzPublicIpAddress @PublicIpVars
 [4]: https://docs.microsoft.com/en-us/powershell/module/az.network/add-azvirtualnetworksubnetconfig?view=azps-5.7.0
 [5]: https://docs.microsoft.com/en-us/powershell/module/az.network/new-azpublicipaddress?view=azps-5.7.0
 [6]: https://github.com/ArtiomLK/azure-firewall-premium-lab
+[7]: https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal
 [100]: #create-rg
 [101]: #create-vnet
 [102]: #create-snet
 [103]: #create-pip
+[104]: #create-an-azure-network-watcher-connection-monitor
