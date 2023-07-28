@@ -103,9 +103,11 @@ Select-AzSubscription -SubscriptionId "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 $nw = "NetworkWatcher_eastus"
 $connectionMonitorName = "cm-topology-dev-eastus"
 
-# Install Azure Network Watcher Extension on the Source VMs
+# get the VMs
 $vm1 = Get-AzVM -ResourceGroupName "rg-az-bicep-topology-dev-eastus" -Name "vm-spoke-1-a827"
 $vm2 = Get-AzVM -ResourceGroupName "rg-az-bicep-topology-dev-eastus" -Name "vm-spoke-n-8d4a"
+
+# Install Azure Network Watcher Extension on the Source VMs
 Set-AzVMExtension -ResourceGroupName $vm1.ResourceGroupName -VMName $vm1.Name -Name "NetworkWatcherAgentWindows" -Publisher "Microsoft.Azure.NetworkWatcher" -ExtensionType "NetworkWatcherAgentWindows" -TypeHandlerVersion "1.4" -EnableAutomaticUpgrade $true
 Set-AzVMExtension -ResourceGroupName $vm2.ResourceGroupName -VMName $vm2.Name -Name "NetworkWatcherAgentWindows" -Publisher "Microsoft.Azure.NetworkWatcher" -ExtensionType "NetworkWatcherAgentWindows" -TypeHandlerVersion "1.4" -EnableAutomaticUpgrade $true
 
@@ -114,6 +116,7 @@ Set-AzVMExtension -ResourceGroupName $vm2.ResourceGroupName -VMName $vm2.Name -N
 $vmOnPrem = Get-AzVM -ResourceGroupName "rg-az-bicep-topology-on-prem-dev-eastus" -Name "vm-on-prem-1-02"
 # run Powershell command on vm
 Invoke-AzVMRunCommand -ResourceGroupName $vmOnPrem.ResourceGroupName -VMName $vmOnPrem.Name -CommandId 'RunPowerShellScript' -ScriptPath 'ps\enable_icmp.ps1'
+# ------------------------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------------------------
 # Create an Azure Network Watcher Connection Monitor to test connectivity to on-premises
@@ -133,8 +136,8 @@ $icmpProtocolConfiguration = New-AzNetworkWatcherConnectionMonitorProtocolConfig
 $tcpProtocolConfiguration = New-AzNetworkWatcherConnectionMonitorProtocolConfigurationObject -TcpProtocol -Port 3389
 
 # Create test configuration with protocol configuration
-$icmpTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name icmp-tc -TestFrequencySec 60 -ProtocolConfiguration $icmpProtocolConfiguration -SuccessThresholdChecksFailedPercent 5 -SuccessThresholdRoundTripTimeMs 500
-$tcpTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name tcp-tc -TestFrequencySec 60 -ProtocolConfiguration $tcpProtocolConfiguration -SuccessThresholdChecksFailedPercent 20 -SuccessThresholdRoundTripTimeMs 500
+$icmpTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name icmp-tc -TestFrequencySec 60 -ProtocolConfiguration $icmpProtocolConfiguration -SuccessThresholdChecksFailedPercent 5 -SuccessThresholdRoundTripTimeMs 100
+$tcpTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name tcp-tc -TestFrequencySec 60 -ProtocolConfiguration $tcpProtocolConfiguration -SuccessThresholdChecksFailedPercent 20 -SuccessThresholdRoundTripTimeMs 100
 
 # Create Test Group
 $testGroupOnPremRef = New-AzNetworkWatcherConnectionMonitorTestGroupObject -Name $testGroupOnPremName -TestConfiguration $tcpTestConfiguration, $icmpTestConfiguration -Source $sourceVm1, $sourceVm2 -Destination $endpointOnPremVm
@@ -157,14 +160,14 @@ $httpsProtocolConfiguration = New-AzNetworkWatcherConnectionMonitorProtocolConfi
 $tcpProtocolConfiguration = New-AzNetworkWatcherConnectionMonitorProtocolConfigurationObject -TcpProtocol -Port 80
 
 # Create test configuration with protocol configuration
-$httpTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name http-tc -TestFrequencySec 60 -ProtocolConfiguration $httpProtocolConfiguration -SuccessThresholdChecksFailedPercent 20 -SuccessThresholdRoundTripTimeMs 500
-$httpsTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name https-tc -TestFrequencySec 60 -ProtocolConfiguration $httpsProtocolConfiguration -SuccessThresholdChecksFailedPercent 20 -SuccessThresholdRoundTripTimeMs 500
+$httpTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name http-tc -TestFrequencySec 60 -ProtocolConfiguration $httpProtocolConfiguration -SuccessThresholdChecksFailedPercent 20 -SuccessThresholdRoundTripTimeMs 200
+$httpsTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name https-tc -TestFrequencySec 60 -ProtocolConfiguration $httpsProtocolConfiguration -SuccessThresholdChecksFailedPercent 20 -SuccessThresholdRoundTripTimeMs 200
 
 # Create Test Group
 $testGroupInternetRef = New-AzNetworkWatcherConnectionMonitorTestGroupObject -Name $testGroupInternetName -TestConfiguration $httpTestConfiguration, $httpsTestConfiguration -Source $sourceVm1, $sourceVm2 -Destination $endpointBing
 
-# Create Connection Monitor force
-New-AzNetworkWatcherConnectionMonitor -NetworkWatcherName $nw -ResourceGroupName NetworkWatcherRG -Name $connectionMonitorName -TestGroup $testGroupOnPremRef, $testGroupInternetRef
+# Create Connection Monitor and confirm to all
+New-AzNetworkWatcherConnectionMonitor -NetworkWatcherName $nw -ResourceGroupName NetworkWatcherRG -Name $connectionMonitorName -TestGroup $testGroupOnPremRef, $testGroupInternetRef -Force
 ```
 
 ## Additional Resources
