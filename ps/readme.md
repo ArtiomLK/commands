@@ -91,51 +91,80 @@ $PublicIp = New-AzPublicIpAddress @PublicIpVars
 ## Create an Azure Network Watcher Connection Monitor
 
 ```PowerShell
+# Sources must be in the same region as the network watcher
+# Destinations can be in any region
+# We must install Network Watcher Extensions on the source VMs
+
 # Connect to your Azure account with the subscription
 Connect-AzAccount
-Select-AzSubscription -SubscriptionId <your-subscription>
-# Select region
+Select-AzSubscription -SubscriptionId "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
+# Replace the following required variables
 $nw = "NetworkWatcher_eastus"
-# Declare endpoints like Azure VM below. You can also give VNET,Subnet,Log Analytics workspace
-$sourcevmid1 = New-AzNetworkWatcherConnectionMonitorEndpointObject -AzureVM -Name MyAzureVm -ResourceID /subscriptions/<your-subscription>/resourceGroups/<your resourceGroup>/providers/Microsoft.Compute/virtualMachines/<vm-name>
-# Declare endpoints like URL, IPs
-$bingEndpoint = New-AzNetworkWatcherConnectionMonitorEndpointObject -ExternalAddress -Name Bing -Address www.bing.com # Destination URL
+$connectionMonitorName = "cm-topology-dev-eastus"
+
+# Install Azure Network Watcher Extension on the Source VMs
+$vm1 = Get-AzVM -ResourceGroupName "rg-az-bicep-topology-dev-eastus" -Name "vm-spoke-1-a827"
+$vm2 = Get-AzVM -ResourceGroupName "rg-az-bicep-topology-dev-eastus" -Name "vm-spoke-n-8d4a"
+Set-AzVMExtension -ResourceGroupName $vm1.ResourceGroupName -VMName $vm1.Name -Name "NetworkWatcherAgentWindows" -Publisher "Microsoft.Azure.NetworkWatcher" -ExtensionType "NetworkWatcherAgentWindows" -TypeHandlerVersion "1.4" -EnableAutomaticUpgrade $true
+Set-AzVMExtension -ResourceGroupName $vm2.ResourceGroupName -VMName $vm2.Name -Name "NetworkWatcherAgentWindows" -Publisher "Microsoft.Azure.NetworkWatcher" -ExtensionType "NetworkWatcherAgentWindows" -TypeHandlerVersion "1.4" -EnableAutomaticUpgrade $true
+
+# *** If required Enable ICMP on the VM ***
+# ------------------------------------------------------------------------------------------------
+$vmOnPrem = Get-AzVM -ResourceGroupName "rg-az-bicep-topology-on-prem-dev-eastus" -Name "vm-on-prem-1-02"
+# run Powershell command on vm
+Invoke-AzVMRunCommand -ResourceGroupName $vmOnPrem.ResourceGroupName -VMName $vmOnPrem.Name -CommandId 'RunPowerShellScript' -ScriptPath 'ps\enable_icmp.ps1'
+
+# ------------------------------------------------------------------------------------------------
+# Create an Azure Network Watcher Connection Monitor to test connectivity to on-premises
+# ------------------------------------------------------------------------------------------------
+$testGroupOnPremName = "test-group-az-eastus-to-on-prem"
+
+# Sources
+$sourceVm1 = New-AzNetworkWatcherConnectionMonitorEndpointObject -AzureVM -Name "$($vm1.Name)-$($vm1.Location)" -ResourceID $vm1.id
+$sourceVm2 = New-AzNetworkWatcherConnectionMonitorEndpointObject -AzureVM -Name "$($vm2.Name)-$($vm2.Location)" -ResourceID $vm2.id
+
+# Destinations
+$endpointBing = New-AzNetworkWatcherConnectionMonitorEndpointObject -ExternalAddress -Name "Bing" -Address www.bing.com
+$endpointOnPremVm = New-AzNetworkWatcherConnectionMonitorEndpointObject -ExternalAddress -Name "vm-on-prem-1-02" -Address 192.168.1.244
 
 # Create test configuration.Choose Protocol and parametersSample configs below.
 $icmpProtocolConfiguration = New-AzNetworkWatcherConnectionMonitorProtocolConfigurationObject -IcmpProtocol
-$tcpProtocolConfiguration = New-AzNetworkWatcherConnectionMonitorProtocolConfigurationObject -TcpProtocol -Port 80
-$httpProtocolConfiguration = New-AzNetworkWatcherConnectionMonitorProtocolConfigurationObject -HttpProtocol -Port 443 -Method GET -RequestHeader @{Allow = "GET"} -ValidStatusCodeRange 2xx, 300-308 -PreferHTTPS
+$tcpProtocolConfiguration = New-AzNetworkWatcherConnectionMonitorProtocolConfigurationObject -TcpProtocol -Port 3389
 
 # Create test configuration with protocol configuration
-$httpTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name http-tc -TestFrequencySec 60 -ProtocolConfiguration $httpProtocolConfiguration -SuccessThresholdChecksFailedPercent 20 -SuccessThresholdRoundTripTimeMs 30
-$icmpTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name icmp-tc -TestFrequencySec 30 -ProtocolConfiguration $icmpProtocolConfiguration -SuccessThresholdChecksFailedPercent 5 -SuccessThresholdRoundTripTimeMs 500
-$tcpTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name tcp-tc -TestFrequencySec 60 -ProtocolConfiguration $tcpProtocolConfiguration -SuccessThresholdChecksFailedPercent 20 -SuccessThresholdRoundTripTimeMs 30
+$icmpTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name icmp-tc -TestFrequencySec 60 -ProtocolConfiguration $icmpProtocolConfiguration -SuccessThresholdChecksFailedPercent 5 -SuccessThresholdRoundTripTimeMs 500
+$tcpTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name tcp-tc -TestFrequencySec 60 -ProtocolConfiguration $tcpProtocolConfiguration -SuccessThresholdChecksFailedPercent 20 -SuccessThresholdRoundTripTimeMs 500
 
 # Create Test Group
-$testGroup1 = New-AzNetworkWatcherConnectionMonitorTestGroupObject -Name testGroup1 -TestConfiguration $httpTestConfiguration, $tcpTestConfiguration, $icmpTestConfiguration -Source $sourcevmid1 -Destination $bingEndpoint,
-$testname = "cmtest9"
+$testGroupOnPremRef = New-AzNetworkWatcherConnectionMonitorTestGroupObject -Name $testGroupOnPremName -TestConfiguration $tcpTestConfiguration, $icmpTestConfiguration -Source $sourceVm1, $sourceVm2 -Destination $endpointOnPremVm
 
-# Create Connection Monitor
-New-AzNetworkWatcherConnectionMonitor -NetworkWatcherName $nw -ResourceGroupName NetworkWatcherRG -Name $testname -TestGroup $testGroup1
+# ------------------------------------------------------------------------------------------------
+# Create an Azure Network Watcher Connection Monitor to test connectivity to the Internet
+# ------------------------------------------------------------------------------------------------
+$testGroupInternetName = "test-group-az-eastus-to-internet"
 
+# Sources
+$sourceVm1 = New-AzNetworkWatcherConnectionMonitorEndpointObject -AzureVM -Name "$($vm1.Name)-$($vm1.Location)" -ResourceID $vm1.id
+$sourceVm2 = New-AzNetworkWatcherConnectionMonitorEndpointObject -AzureVM -Name "$($vm2.Name)-$($vm2.Location)" -ResourceID $vm2.id
 
+# Destinations
+$endpointBing = New-AzNetworkWatcherConnectionMonitorEndpointObject -ExternalAddress -Name "Bing" -Address www.bing.com
 
+# Create test configuration.Choose Protocol and parametersSample configs below.
+$httpProtocolConfiguration = New-AzNetworkWatcherConnectionMonitorProtocolConfigurationObject -HttpProtocol -Port 80 -Method GET -RequestHeader @{Allow = "GET"} -ValidStatusCodeRange 2xx, 300-308
+$httpsProtocolConfiguration = New-AzNetworkWatcherConnectionMonitorProtocolConfigurationObject -HttpProtocol -Port 443 -Method GET -RequestHeader @{Allow = "GET"} -ValidStatusCodeRange 2xx, 300-308 -PreferHTTPS
+$tcpProtocolConfiguration = New-AzNetworkWatcherConnectionMonitorProtocolConfigurationObject -TcpProtocol -Port 80
 
+# Create test configuration with protocol configuration
+$httpTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name http-tc -TestFrequencySec 60 -ProtocolConfiguration $httpProtocolConfiguration -SuccessThresholdChecksFailedPercent 20 -SuccessThresholdRoundTripTimeMs 500
+$httpsTestConfiguration = New-AzNetworkWatcherConnectionMonitorTestConfigurationObject -Name https-tc -TestFrequencySec 60 -ProtocolConfiguration $httpsProtocolConfiguration -SuccessThresholdChecksFailedPercent 20 -SuccessThresholdRoundTripTimeMs 500
 
-$ConnectionMonitorVars = @{
-    Name = "your-connection-monitor-name"
-    Location = 'EastUS2'
-    SourceResourceId = 'your-source-resource-id'
-    DestinationResourceId = 'your-destination-resource-id'
-    Tag = @{
-        "your-key" = "your-value"
-    }
-    ResourceGroupName = 'rgName'
-}
+# Create Test Group
+$testGroupInternetRef = New-AzNetworkWatcherConnectionMonitorTestGroupObject -Name $testGroupInternetName -TestConfiguration $httpTestConfiguration, $httpsTestConfiguration -Source $sourceVm1, $sourceVm2 -Destination $endpointBing
 
-# Create a connection monitor
-$ConnectionMonitor = New-AzNetworkWatcherConnectionMonitor @ConnectionMonitorVars
+# Create Connection Monitor force
+New-AzNetworkWatcherConnectionMonitor -NetworkWatcherName $nw -ResourceGroupName NetworkWatcherRG -Name $connectionMonitorName -TestGroup $testGroupOnPremRef, $testGroupInternetRef
 ```
 
 ## Additional Resources
