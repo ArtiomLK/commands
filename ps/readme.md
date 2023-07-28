@@ -179,7 +179,7 @@ New-AzNetworkWatcherConnectionMonitor -NetworkWatcherName $nw -ResourceGroupName
 - [MS | Docs | Add-AzVirtualNetworkSubnetConfig][4]
 - [MS | Docs | New-AzPublicIpAddress][5]
 - Connection Monitor
-- [MS | Learn | Create an Azure Network Watcher connection monitor using the Azure portal][7]
+- [MS | Learn | Create an Azure Network Watcher connection monitor using PowerShell][7]
 
 <!-- Reference Links -->
 
@@ -189,7 +189,7 @@ New-AzNetworkWatcherConnectionMonitor -NetworkWatcherName $nw -ResourceGroupName
 [4]: https://docs.microsoft.com/en-us/powershell/module/az.network/add-azvirtualnetworksubnetconfig?view=azps-5.7.0
 [5]: https://docs.microsoft.com/en-us/powershell/module/az.network/new-azpublicipaddress?view=azps-5.7.0
 [6]: https://github.com/ArtiomLK/azure-firewall-premium-lab
-[7]: https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-portal
+[7]: https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-powershell
 [100]: #create-rg
 [101]: #create-vnet
 [102]: #create-snet
