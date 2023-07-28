@@ -7,9 +7,7 @@
 Test-NetConnection 10.10.10.1 -Port 3389 -InformationLevel "Detailed"
 ```
 
-## Use Azure Network Watcher Connection Monitor to test connectivity
-
-```PowerShell
+## [Use Azure Network Watcher Connection Monitor to test connectivity][3]
 
 ## Additional Resources
 
@@ -19,3 +17,4 @@ Test-NetConnection 10.10.10.1 -Port 3389 -InformationLevel "Detailed"
 
 [1]: https://learn.microsoft.com/en-us/powershell/module/nettcpip/test-netconnection
 [2]: https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq#what-address-ranges-can-i-use-in-my-vnets
+[3]: https://github.com/ArtiomLK/commands/blob/main/ps/readme.md#create-an-azure-network-watcher-connection-monitor
