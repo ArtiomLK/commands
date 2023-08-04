@@ -94,6 +94,7 @@ $PublicIp = New-AzPublicIpAddress @PublicIpVars
 # Sources must be in the same region as the network watcher
 # Destinations can be in any region
 # We must install Network Watcher Extensions on the source VMs
+# Additional examples at /examples/cm
 
 # Connect to your Azure account with the subscription
 Connect-AzAccount
