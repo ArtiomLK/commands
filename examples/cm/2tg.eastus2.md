@@ -17,7 +17,7 @@ $connectionMonitorName = "cm-app2-prod-eastus2"
 $vm1 = Get-AzVM -ResourceGroupName "rg-app2-prod-eastus2" -Name "vm-app2-prod-eastus2-001"
 $vm2 = Get-AzVM -ResourceGroupName "rg-app2-prod-eastus2" -Name "vm-app2-prod-eastus2-002"
 
-# # Install Azure Network Watcher Extension on the Source VMs
+# Install Azure Network Watcher Extension on the Source VMs
 Set-AzVMExtension -ResourceGroupName $vm1.ResourceGroupName -VMName $vm1.Name -Name "NetworkWatcherAgentWindows" -Publisher "Microsoft.Azure.NetworkWatcher" -ExtensionType "NetworkWatcherAgentWindows" -TypeHandlerVersion "1.4" -EnableAutomaticUpgrade $true
 Set-AzVMExtension -ResourceGroupName $vm2.ResourceGroupName -VMName $vm2.Name -Name "NetworkWatcherAgentWindows" -Publisher "Microsoft.Azure.NetworkWatcher" -ExtensionType "NetworkWatcherAgentWindows" -TypeHandlerVersion "1.4" -EnableAutomaticUpgrade $true
 

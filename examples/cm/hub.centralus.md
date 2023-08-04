@@ -16,7 +16,7 @@ $connectionMonitorName = "cm-azure-centralus"
 # get the VMs
 $vm1 = Get-AzVM -ResourceGroupName "rg-nw-cm-prod-centralus" -Name "vm-nw-cm-prod-centralus"
 
-# # Install Azure Network Watcher Extension on the Source VMs
+# Install Azure Network Watcher Extension on the Source VMs
 Set-AzVMExtension -ResourceGroupName $vm1.ResourceGroupName -VMName $vm1.Name -Name "NetworkWatcherAgentWindows" -Publisher "Microsoft.Azure.NetworkWatcher" -ExtensionType "NetworkWatcherAgentWindows" -TypeHandlerVersion "1.4" -EnableAutomaticUpgrade $true
 
 # ------------------------------------------------------------------------------------------------
