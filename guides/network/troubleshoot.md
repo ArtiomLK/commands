@@ -13,6 +13,8 @@ Test-NetConnection 10.10.10.1 -Port 3389 -InformationLevel "Detailed"
 
 ![Network Level Authentication](nla/nla-error-message.png)
 
+![Enable NLV RDP](nla/enable-nla-rdp.png)
+
 - [Disable NLA][5]
 - [MS | Disable NLA | Run Command][6]
 
