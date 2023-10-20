@@ -7,7 +7,7 @@
 Test-NetConnection 10.10.10.1 -Port 3389 -InformationLevel "Detailed"
 ```
 
-## [GH | Use Azure Network Watcher Connection Monitor][3]
+## [GH | ArtiomLK | Use Azure Network Watcher Connection Monitor][3]
 
 ## Additional Resources
 
