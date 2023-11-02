@@ -9,6 +9,13 @@ Test-NetConnection 10.10.10.1 -Port 3389 -InformationLevel "Detailed"
 
 ## [GH | ArtiomLK | Use Azure Network Watcher Connection Monitor][3]
 
+## Commands
+
+```console
+:: Print local IPv4
+ipconfig | find "IPv4"
+```
+
 ## Network Level Authentication (NLA)
 
 ![Network Level Authentication](nla/nla-error-message.png)
