@@ -12,8 +12,13 @@ Test-NetConnection 10.10.10.1 -Port 3389 -InformationLevel "Detailed"
 ## Commands
 
 ```console
-:: Print local IPv4
+:: Print local IPv4 CMD
 ipconfig | find "IPv4"
+```
+
+```Powershell
+# Print local IPv4 PowerShell
+ipconfig | Where-Object { $_ -match 'Ipv4.*: ((\d{1,3}\.){3}\d{1,3})' } | ForEach-Object { $Matches[1] }
 ```
 
 ## Network Level Authentication (NLA)
