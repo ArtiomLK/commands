@@ -3,6 +3,7 @@
 | Command                                                            | Description                      |
 | ------------------------------------------------------------------ | -------------------------------- |
 | `Connect-AzAccount`                                                | login to azure with your account |
+| `Connect-AzAccount -Tenant xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`   |                                  |
 | `Get-AzSubscription`                                               | -                                |
 | `Set-AzContext -Subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` | use subscriptionID               |
 | `Get-AzContext`                                                    | -                                |
