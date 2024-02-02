@@ -135,6 +135,13 @@ do
 done
 ```
 
+## Start and Stop agw
+
+```bash
+az network application-gateway stop --id "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/rg-name/providers/Microsoft.Network/applicationGateways/agw-name"
+az network application-gateway start --id "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/rg-name/providers/Microsoft.Network/applicationGateways/agw-name"
+```
+
 ### Additional Resources
 
 - App Registration
