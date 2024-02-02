@@ -3,6 +3,7 @@
 | Command                                                                       | Description                                              |
 | ----------------------------------------------------------------------------- | -------------------------------------------------------- |
 | `az login`                                                                    | login to azure with your account                         |
+| `az login --tenant xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`                      | login to azure with your account to specific tenant      |
 | `az account list --output table`                                              | display available subscription                           |
 | `az account set --subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`          | use subscriptionID                                       |
 | `az account show --output table`                                              | check the subscriptions currently in use                 |
