@@ -16,6 +16,9 @@ on:
       ACR_MODULE_N:
         required: true
         type: string
+      LOCATION:
+        required: false
+        type: string
     secrets:
       ACR_LOGIN_SERVER:
         required: true
@@ -53,6 +56,7 @@ jobs:
         resourceGroupName: ${{ inputs.RG_N }}
         deploymentMode: Incremental
         template: ${{ inputs.TEST_BICEP_FILE_FILE }} # examples/examples.bicep
+        parameters: location=${{ inputs.LOCATION }}
         failOnStdErr: true
 
     - name: Login to ACR
