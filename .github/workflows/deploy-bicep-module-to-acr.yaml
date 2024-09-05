@@ -28,6 +28,8 @@ on:
         required: true
       AZURE_CREDENTIALS:
         required: true
+      AZURE_CREDENTIALS_ACR:
+        required: true
 
 jobs:
   deploy_to_dev:
@@ -58,6 +60,11 @@ jobs:
         template: ${{ inputs.TEST_BICEP_FILE_FILE }} # examples/examples.bicep
         parameters: location=${{ inputs.LOCATION }}
         failOnStdErr: true
+
+      # Log into Azure Portal where ACR is located
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS_ACR }}
 
     - name: Login to ACR
       uses: azure/docker-login@v1
