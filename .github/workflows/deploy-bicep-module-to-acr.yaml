@@ -30,6 +30,10 @@ on:
         required: true
       AZURE_CREDENTIALS_ACR:
         required: true
+      ADMIN_N:
+        required: false
+      ADMIN_PASS:
+        required: false
 
 jobs:
   deploy_to_dev:
@@ -50,7 +54,6 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # Test Azure Resource Deployment
     - name: Test Deploying Bicep Modules to Azure
       uses: azure/arm-deploy@v1
       with:
@@ -58,7 +61,8 @@ jobs:
         resourceGroupName: ${{ inputs.RG_N }}
         deploymentMode: Incremental
         template: ${{ inputs.TEST_BICEP_FILE_FILE }} # examples/examples.bicep
-        parameters: location=${{ inputs.LOCATION }}
+        parameters: |
+          location=${{ inputs.location }} ${{ secrets.ADMIN_N && secrets.ADMIN_PASS && format('admin_n={0} admin_pass={1}', secrets.ADMIN_N, secrets.ADMIN_PASS) || '' }}
         failOnStdErr: true
 
       # Log into Azure Portal where ACR is located
