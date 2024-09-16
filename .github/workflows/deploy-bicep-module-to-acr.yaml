@@ -30,9 +30,9 @@ on:
         required: true
       AZURE_CREDENTIALS_ACR:
         required: true
-      ADMIN_USERNAME:
+      ADMIN_N:
         required: false
-      ADMIN_PASSWORD:
+      ADMIN_PASS:
         required: false
 
 jobs:
@@ -64,7 +64,7 @@ jobs:
         template: ${{ inputs.TEST_BICEP_FILE_FILE }} # examples/examples.bicep
         parameters: |
           location=${{ inputs.LOCATION }}
-          ${{ secrets.ADMIN_USERNAME && secrets.ADMIN_PASSWORD && format('admin_n={0} admin_pass={1}', secrets.ADMIN_USERNAME, secrets.ADMIN_PASSWORD) || '' }}
+          ${{ secrets.ADMIN_N && secrets.ADMIN_PASS && format('admin_n={0} admin_pass={1}', secrets.ADMIN_N, secrets.ADMIN_PASS) || '' }}
         failOnStdErr: true
 
       # Log into Azure Portal where ACR is located
