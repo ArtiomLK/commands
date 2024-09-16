@@ -62,7 +62,7 @@ jobs:
         deploymentMode: Incremental
         template: ${{ inputs.TEST_BICEP_FILE_FILE }} # examples/examples.bicep
         parameters: |
-          location=${{ inputs.location }} admin_n=${{ secrets.admin_n  }} admin_pass=${{ secrets.admin_pass }}
+          location=${{ inputs.location }} ${{ secrets.ADMIN_N && secrets.ADMIN_PASS && format('admin_n={0} admin_pass={1}', secrets.ADMIN_N, secrets.ADMIN_PASS) || '' }}
         failOnStdErr: true
 
       # Log into Azure Portal where ACR is located
