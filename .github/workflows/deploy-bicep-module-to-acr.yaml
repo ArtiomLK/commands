@@ -30,6 +30,10 @@ on:
         required: true
       AZURE_CREDENTIALS_ACR:
         required: true
+      ADMIN_USERNAME:
+        required: false
+      ADMIN_PASSWORD:
+        required: false
 
 jobs:
   deploy_to_dev:
@@ -58,7 +62,9 @@ jobs:
         resourceGroupName: ${{ inputs.RG_N }}
         deploymentMode: Incremental
         template: ${{ inputs.TEST_BICEP_FILE_FILE }} # examples/examples.bicep
-        parameters: location=${{ inputs.LOCATION }}
+        parameters: |
+          location=${{ inputs.LOCATION }}
+          ${{ secrets.ADMIN_USERNAME && secrets.ADMIN_PASSWORD && format('admin_n={0} admin_pass={1}', secrets.ADMIN_USERNAME, secrets.ADMIN_PASSWORD) || '' }}
         failOnStdErr: true
 
       # Log into Azure Portal where ACR is located
