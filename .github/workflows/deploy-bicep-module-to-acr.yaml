@@ -64,7 +64,7 @@ jobs:
         template: ${{ inputs.TEST_BICEP_FILE_FILE }} # examples/examples.bicep
         parameters: |
           location=${{ inputs.LOCATION }}
-          ${{ secrets.ADMIN_N && secrets.ADMIN_PASS && format('admin_n={0} admin_pass={1}', secrets.ADMIN_N, secrets.ADMIN_PASS) || '' }}
+          ${{ secrets.ADMIN_N && secrets.ADMIN_PASS && format('admin_n={0} admin_pass={1}', 'somet1admintbr', secrets.ADMIN_PASS) || '' }}
         failOnStdErr: true
 
       # Log into Azure Portal where ACR is located
