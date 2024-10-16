@@ -20,6 +20,15 @@ ipconfig | find "IPv4"
 # Print local IPv4 PowerShell
 ipconfig | Where-Object { $_ -match 'Ipv4.*: ((\d{1,3}\.){3}\d{1,3})' } | ForEach-Object { $Matches[1] }
 ```
+## [Enable ICMP / PING][7]
+
+```Powershell
+# For IPv4
+netsh advfirewall firewall add rule name="ICMP Allow incoming V4 echo request" protocol="icmpv4:8,any" dir=in action=allow
+ 
+#For IPv6
+netsh advfirewall firewall add rule name="ICMP Allow incoming V6 echo request" protocol="icmpv6:8,any" dir=in action=allow
+```
 
 ## Network Level Authentication (NLA)
 
@@ -44,3 +53,4 @@ ipconfig | Where-Object { $_ -match 'Ipv4.*: ((\d{1,3}\.){3}\d{1,3})' } | ForEac
 [4]: https://learn.microsoft.com/en-us/azure/network-watcher/network-watcher-monitoring-overview
 [5]: https://learn.microsoft.com/en-us/troubleshoot/azure/virtual-machines/cannot-connect-rdp-azure-vm#workaround
 [6]: https://learn.microsoft.com/en-us/azure/virtual-machines/windows/run-command#azure-portal
+[7]: https://www.thomasmaurer.ch/2019/09/how-to-enable-ping-icmp-echo-on-an-azure-vm/
