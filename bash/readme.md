@@ -142,6 +142,21 @@ az network application-gateway stop --id "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx
 az network application-gateway start --id "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/rg-name/providers/Microsoft.Network/applicationGateways/agw-name"
 ```
 
+## Create NSG
+
+```bash
+rg_n="rg-myapp-dev-eastus2";                                        echo $rg_n
+nsg_n="nsg-myapp-default-dev-eastus2";                              echo $nsg_n
+l="eastus2";                                                        echo $l
+tags="Env=Dev Project=myapp CostCenter=1234";                       echo $tags
+
+az network nsg create \
+--resource-group $rg_n \
+--name $nsg_n \
+--location $l \
+--tags $tags
+```
+
 ### Additional Resources
 
 - App Registration
