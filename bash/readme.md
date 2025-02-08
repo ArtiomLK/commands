@@ -157,6 +157,50 @@ az network nsg create \
 --tags $tags
 ```
 
+## Delete Multiple Resource Groups
+
+```bash
+az login --tenant "########-####-####-####-############"
+sub_id="########-####-####-####-############"; echo $sub_id
+
+rgs=(
+rg-design-dev-centralus
+rg-design-dev-eastus
+rg-endeavor-dev-eastus
+rg-endeavor-dev-westus
+rg-envision-dev-eastus
+rg-envision-dev-westus
+rg-ether-dev-eastus2
+rg-ether-dev-westus
+rg-heal-dev-centralus
+rg-heal-dev-eastus
+rg-imagine-dev-eastus
+rg-imagine-dev-westus
+rg-innermost-dev-centralus
+rg-innermost-dev-eastus
+rg-inventory-dev-eastus
+rg-inventory-dev-japaneast
+rg-matrix-dev-uksouth
+rg-matrix-dev-eastus
+rg-reach-dev-centralus
+rg-reach-dev-uksouth
+rg-seek-dev-eastus
+rg-seek-dev-westus
+rg-sight-dev-eastus
+rg-skyfort-dev-centralus
+rg-skyfort-dev-eastus2
+);
+
+for rg in "${rgs[@]}"
+do
+echo "deleting $rg"
+az group delete \
+  --name $rg \
+  --subscription $sub_id \
+  --yes --no-wait
+done
+```
+
 ### Additional Resources
 
 - App Registration
