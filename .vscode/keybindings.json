@@ -1,0 +1,39 @@
+// Copy these key bindings to your current codespace keyboard shortcut file to override the defaults
+[
+  {
+    "key": "alt+backspace",
+    "command": "editor.action.deleteLines",
+    "when": "textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+enter",
+    "command": "workbench.action.terminal.runSelectedText",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+enter",
+    "command": "extension.multiCommand.execute",
+    "when": "!editorTextFocus",
+    "args": {
+      "sequence": [
+        "editor.action.clipboardCopyAction",
+        {
+          "command": "workbench.action.terminal.toggleTerminal"
+        },
+        {
+          "command": "workbench.action.terminal.sendSequence",
+          "args": {
+            "text": "\u001b"
+          }
+        },
+        "workbench.action.terminal.paste",
+        {
+          "command": "workbench.action.terminal.sendSequence",
+          "args": {
+            "text": "\u000D"
+          }
+        }
+      ]
+    }
+  }
+]
