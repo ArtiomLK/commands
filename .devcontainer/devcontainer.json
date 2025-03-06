@@ -9,8 +9,28 @@
         "yzhang.markdown-all-in-one",
         "davidanson.vscode-markdownlint",
         "streetsidesoftware.code-spell-checker",
-        "rosshamish.kuskus-kusto-syntax-highlighting"
+        "rosshamish.kuskus-kusto-syntax-highlighting",
+        "ms-python.python",
+        "ms-azuretools.vscode-azurefunctions",
+        "ms-vscode.vscode-node-azure-pack"
       ]
+    },
+    "codespaces": {
+      "repositories": {
+        "Azure/GPT-RAG": {
+          "permissions": "read-all"
+        },
+        "Azure/gpt-rag-ingestion": {
+          "permissions": "read-all"
+        },
+        "Azure/gpt-rag-orchestrator": {
+          "permissions": "read-all"
+        },
+        "Azure/gpt-rag-frontend": {
+          "permissions": "read-all"
+        }
+      }
     }
-  }
+  },
+  "postCreateCommand": "chmod +x .devcontainer/post-create-command.sh && .devcontainer/post-create-command.sh"
 }
