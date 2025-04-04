@@ -201,6 +201,16 @@ az group delete \
 done
 ```
 
+## Init GH Codespaces and VSCode Conf
+
+```bash
+curl -L -o repo.zip https://github.com/ArtiomLK/commands/archive/refs/heads/main.zip
+unzip repo.zip
+mv commands-main/.devcontainer ./
+mv commands-main/.vscode ./
+rm -rf commands-main repo.zip
+```
+
 ### Additional Resources
 
 - App Registration
