@@ -245,6 +245,17 @@ az ad app federated-credential create \
     "subject": "repo:'"$gh_repo_owner"'/'"$gh_repo_n"':ref:refs/heads/*",
     "audiences": ["api://AzureADTokenExchange"]
   }'
+
+# Step 3: Create GitHub Secrets for Storing Azure Configuration
+# Add the following secrets to your GitHub repository under Settings > Secrets and variables > Actions:
+
+# AZURE_CLIENT_ID: Application (client) ID or $APP_ID
+az ad app show --id $APP_ID --query appId -o tsv
+# AZURE_TENANT_ID: Value: The tenant ID of your Azure account.
+az account show --query tenantId -o tsv
+# AZURE_SUBSCRIPTION_ID: Value: The subscription ID of your Azure account.
+az account show --query id -o tsv
+
 ```
 
 ### Additional Resources
