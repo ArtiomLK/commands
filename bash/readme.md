@@ -215,16 +215,17 @@ rm -rf commands-main repo.zip
 
 ```bash
 tenant_id='########-####-####-####-############';                       echo $tenant_id   # must update
-sub_id='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';                          echo $sub_id      # must update
+sub_id='########-####-####-####-############';                          echo $sub_id      # must update
+app_reg_n="gh-oidc-auth";                                               echo $gh_repo_n
 gh_repo_owner="artiomlk";                                               echo $gh_repo_owner
-gh_repo_n="REPO";                                                       echo $gh_repo_n
-app_reg_n="$gh_repo_n";                                                 echo $app_reg_n
+gh_repo_n="aks-pet-store-demo";                                         echo $gh_repo_n
 
-az login --tenant $tenant_id
+az login --tenant $tenant_id --use-device-code
 az account set --subscription $sub_id
+az account show
 
 # Step 1: Create an Entra ID Application and a Service Principal
-APP_ID=$(az ad app create --display-name "GitHub Actions OIDC" --query appId --output tsv); echo $APP_ID
+APP_ID=$(az ad app create --display-name $app_reg_n --query appId --output tsv); echo $APP_ID
 
 # Create a Service Principal:
 az ad sp create --id $APP_ID
@@ -239,7 +240,7 @@ az role assignment create \
 az ad app federated-credential create \
   --id $APP_ID \
   --parameters '{
-    "name": "GitHubActionsFederatedCredential",
+    "name": "'$gh_repo_n'",
     "issuer": "https://token.actions.githubusercontent.com",
     "subject": "repo:'"$gh_repo_owner"'/'"$gh_repo_n"':ref:refs/heads/*",
     "audiences": ["api://AzureADTokenExchange"]
