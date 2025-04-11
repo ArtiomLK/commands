@@ -266,10 +266,13 @@ az account show --query id -o tsv
 - [MS | Learn | Resolve errors for SKU not available][2]
 - Register Resource Provider
 - [MS | Learn | az provider register][3]
+- GH
+- [GH | Configuring OpenID Connect in Azure][4]
 
 [1]: https://learn.microsoft.com/en-us/azure/healthcare-apis/register-application-cli-rest
 [2]: https://learn.microsoft.com/en-us/azure/azure-resource-manager/troubleshooting/error-sku-not-available
 [3]: https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-register
+[4]: https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-azure
 [100]: #create-vnet-peering
 [101]: #create-rg
 [102]: #create-app-registration
