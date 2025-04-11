@@ -233,7 +233,7 @@ az ad sp create --id $APP_ID
 # Assign a Role to the Service Principal:
 az role assignment create \
   --assignee $APP_ID \
-  --role Contributor \
+  --role Owner \
   --scope /subscriptions/$sub_id
 
 # Step 2: Add Federated Credentials for the Entra ID Application
