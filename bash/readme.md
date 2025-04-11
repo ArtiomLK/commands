@@ -211,6 +211,41 @@ mv commands-main/.vscode ./
 rm -rf commands-main repo.zip
 ```
 
+## Open ID Connect (OIDC) for GitHub Actions
+
+```bash
+tenant_id='########-####-####-####-############';                       echo $tenant_id   # must update
+sub_id='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';                          echo $sub_id      # must update
+gh_repo_owner="artiomlk";                                               echo $gh_repo_owner
+gh_repo_n="REPO";                                                       echo $gh_repo_n
+app_reg_n="$gh_repo_n";                                                 echo $app_reg_n
+
+az login --tenant $tenant_id
+az account set --subscription $sub_id
+
+# Step 1: Create an Entra ID Application and a Service Principal
+APP_ID=$(az ad app create --display-name "GitHub Actions OIDC" --query appId --output tsv); echo $APP_ID
+
+# Create a Service Principal:
+az ad sp create --id $APP_ID
+
+# Assign a Role to the Service Principal:
+az role assignment create \
+  --assignee $APP_ID \
+  --role Contributor \
+  --scope /subscriptions/$sub_id
+
+# Step 2: Add Federated Credentials for the Entra ID Application
+az ad app federated-credential create \
+  --id $APP_ID \
+  --parameters '{
+    "name": "GitHubActionsFederatedCredential",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "subject": "repo:'"$gh_repo_owner"'/'"$gh_repo_n"':ref:refs/heads/*",
+    "audiences": ["api://AzureADTokenExchange"]
+  }'
+```
+
 ### Additional Resources
 
 - App Registration
