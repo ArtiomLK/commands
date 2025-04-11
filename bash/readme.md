@@ -211,6 +211,61 @@ mv commands-main/.vscode ./
 rm -rf commands-main repo.zip
 ```
 
+## Open ID Connect (OIDC) for GitHub Actions
+
+```bash
+tenant_id='########-####-####-####-############';                       echo $tenant_id   # must update
+sub_id='########-####-####-####-############';                          echo $sub_id      # must update
+app_reg_n="gh-oidc-auth";                                               echo $gh_repo_n
+gh_repo_owner="ArtiomLK";                                               echo $gh_repo_owner # case sensitive
+gh_repo_n="aks-pet-store-demo";                                         echo $gh_repo_n
+
+az login --tenant $tenant_id --use-device-code
+az account set --subscription $sub_id
+az account show
+
+# Step 1: Create an Entra ID Application and a Service Principal
+APP_ID=$(az ad app create --display-name $app_reg_n --query appId --output tsv); echo $APP_ID
+
+# Create a Service Principal:
+az ad sp create --id $APP_ID
+
+# Assign a Role to the Service Principal:
+az role assignment create \
+  --assignee $APP_ID \
+  --role Owner \
+  --scope /subscriptions/$sub_id
+
+# get principal id
+# SP_OBJECT_ID=$(az ad sp show --id $APP_ID --query id --output tsv); echo $SP_OBJECT_ID
+
+# Step 2: Add Federated Credentials for the Entra ID Application
+az ad app federated-credential create \
+  --id $APP_ID \
+  --parameters '{
+    "name": "'$gh_repo_n'",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "subject": "repo:'"$gh_repo_owner"'/'"$gh_repo_n"':ref:refs/heads/**",
+    "audiences": ["api://AzureADTokenExchange"]
+  }'
+
+# Flexible Federated Identity Credential
+# az rest --method post \
+#   --url "https://graph.microsoft.com/beta/applications/<app_ref_object>/federatedIdentityCredentials" \
+#   --resource "https://graph.microsoft.com" \
+#   --body "{'name': 'FlexFic1', 'issuer': 'https://token.actions.githubusercontent.com', 'audiences': ['api://AzureADTokenExchange'], 'claimsMatchingExpression': {'value': 'claims[\'sub\'] matches \'repo:artiomlk/aks-pet-store-demo:ref:refs/heads/*\'', 'languageVersion': 1}}"
+
+# Step 3: Create GitHub Secrets for Storing Azure Configuration
+# Add the following secrets to your GitHub repository under Settings > Secrets and variables > Actions > Repository secrets:
+
+# AZURE_CLIENT_ID: Application (client) ID or $APP_ID
+az ad app show --id $APP_ID --query appId -o tsv
+# AZURE_TENANT_ID: Value: The tenant ID of your Azure account.
+az account show --query tenantId -o tsv
+# AZURE_SUBSCRIPTION_ID: Value: The subscription ID of your Azure account.
+az account show --query id -o tsv
+```
+
 ### Additional Resources
 
 - App Registration
@@ -219,10 +274,13 @@ rm -rf commands-main repo.zip
 - [MS | Learn | Resolve errors for SKU not available][2]
 - Register Resource Provider
 - [MS | Learn | az provider register][3]
+- GH
+- [GH | Configuring OpenID Connect in Azure][4]
 
 [1]: https://learn.microsoft.com/en-us/azure/healthcare-apis/register-application-cli-rest
 [2]: https://learn.microsoft.com/en-us/azure/azure-resource-manager/troubleshooting/error-sku-not-available
 [3]: https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-register
+[4]: https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-azure
 [100]: #create-vnet-peering
 [101]: #create-rg
 [102]: #create-app-registration
