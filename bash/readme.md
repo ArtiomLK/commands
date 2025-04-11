@@ -236,6 +236,9 @@ az role assignment create \
   --role Owner \
   --scope /subscriptions/$sub_id
 
+# get principal id
+# SP_OBJECT_ID=$(az ad sp show --id $APP_ID --query id --output tsv); echo $SP_OBJECT_ID
+
 # Step 2: Add Federated Credentials for the Entra ID Application
 az ad app federated-credential create \
   --id $APP_ID \
