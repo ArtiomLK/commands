@@ -247,7 +247,7 @@ az ad app federated-credential create \
   }'
 
 # Step 3: Create GitHub Secrets for Storing Azure Configuration
-# Add the following secrets to your GitHub repository under Settings > Secrets and variables > Actions:
+# Add the following secrets to your GitHub repository under Settings > Secrets and variables > Actions > Repository secrets:
 
 # AZURE_CLIENT_ID: Application (client) ID or $APP_ID
 az ad app show --id $APP_ID --query appId -o tsv
