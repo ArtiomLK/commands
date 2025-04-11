@@ -217,7 +217,7 @@ rm -rf commands-main repo.zip
 tenant_id='########-####-####-####-############';                       echo $tenant_id   # must update
 sub_id='########-####-####-####-############';                          echo $sub_id      # must update
 app_reg_n="gh-oidc-auth";                                               echo $gh_repo_n
-gh_repo_owner="artiomlk";                                               echo $gh_repo_owner
+gh_repo_owner="ArtiomLK";                                               echo $gh_repo_owner # case sensitive
 gh_repo_n="aks-pet-store-demo";                                         echo $gh_repo_n
 
 az login --tenant $tenant_id --use-device-code
@@ -242,9 +242,15 @@ az ad app federated-credential create \
   --parameters '{
     "name": "'$gh_repo_n'",
     "issuer": "https://token.actions.githubusercontent.com",
-    "subject": "repo:'"$gh_repo_owner"'/'"$gh_repo_n"':ref:refs/heads/*",
+    "subject": "repo:'"$gh_repo_owner"'/'"$gh_repo_n"':ref:refs/heads/**",
     "audiences": ["api://AzureADTokenExchange"]
   }'
+
+# Flexible Federated Identity Credential
+# az rest --method post \
+#   --url "https://graph.microsoft.com/beta/applications/<app_ref_object>/federatedIdentityCredentials" \
+#   --resource "https://graph.microsoft.com" \
+#   --body "{'name': 'FlexFic1', 'issuer': 'https://token.actions.githubusercontent.com', 'audiences': ['api://AzureADTokenExchange'], 'claimsMatchingExpression': {'value': 'claims[\'sub\'] matches \'repo:artiomlk/aks-pet-store-demo:ref:refs/heads/*\'', 'languageVersion': 1}}"
 
 # Step 3: Create GitHub Secrets for Storing Azure Configuration
 # Add the following secrets to your GitHub repository under Settings > Secrets and variables > Actions > Repository secrets:
@@ -255,7 +261,6 @@ az ad app show --id $APP_ID --query appId -o tsv
 az account show --query tenantId -o tsv
 # AZURE_SUBSCRIPTION_ID: Value: The subscription ID of your Azure account.
 az account show --query id -o tsv
-
 ```
 
 ### Additional Resources
