@@ -266,6 +266,25 @@ az account show --query tenantId -o tsv
 az account show --query id -o tsv
 ```
 
+## AZURE_CREDENTIALS Template
+
+```json
+{
+  "clientId": "########-####-####-####-###########",
+  "clientSecret": "###########################################",
+  "subscriptionId": "########-####-####-####-###########",
+  "tenantId": "########-####-####-####-###########"
+}
+```
+
+```yaml
+# Log into Azure
+  - name: Login to Azure
+    uses: azure/login@v1
+    with:
+      creds: ${{ secrets.AZURE_CREDENTIALS }}
+```
+
 ### Additional Resources
 
 - App Registration
