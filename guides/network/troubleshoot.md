@@ -9,6 +9,11 @@ Test-NetConnection 10.10.10.1 -Port 3389 -InformationLevel "Detailed"
 Test-NetConnection -ComputerName "bing.com" -Port 443 -InformationLevel "Detailed"
 ```
 
+```bash
+# Linux
+curl -I -w "%{http_code}\n" https://www.bing.com
+```
+
 ## [Resolve-DnsName][8] from Windows VMs
 
 ```PowerShell
