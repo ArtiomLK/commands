@@ -64,15 +64,3 @@ jobs:
         parameters: |
           location=${{ inputs.location }} ${{ secrets.ADMIN_N && secrets.ADMIN_PASS && format('admin_n={0} admin_pass={1}', secrets.ADMIN_N, secrets.ADMIN_PASS) || '' }}
         failOnStdErr: true
-
-      # Log into Azure Portal where ACR is located
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS_ACR }}
-
-    - name: Publish bicep module to ACR
-      uses: azure/CLI@v1
-      with:
-        azcliversion: 2.50.0
-        inlineScript: |
-          az bicep publish --file ${{ inputs.MAIN_BICEP_FILE_PATH }} --target "br:${{ secrets.ACR_LOGIN_SERVER }}/bicep/modules/${{ inputs.ACR_MODULE_N }}:${{ github.sha }}" --force
