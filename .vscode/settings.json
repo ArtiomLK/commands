@@ -7,9 +7,15 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.markdownlint": "always"
   },
+  "[python]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+  },
   "[markdown]": {
     "editor.formatOnPaste": true,
-    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
   },
   "files.trimTrailingWhitespace": true,
   "diffEditor.ignoreTrimWhitespace": false,
