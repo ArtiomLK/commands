@@ -12,7 +12,8 @@
         "rosshamish.kuskus-kusto-syntax-highlighting",
         "ms-python.python",
         "ms-azuretools.vscode-azurefunctions",
-        "ms-vscode.vscode-node-azure-pack"
+        "ms-vscode.vscode-node-azure-pack",
+        "humao.rest-client"
       ]
     },
     "codespaces": {}
