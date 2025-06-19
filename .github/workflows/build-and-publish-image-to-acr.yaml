@@ -1,0 +1,43 @@
+on:
+  workflow_call:
+    inputs:
+      ENVIRONMENT:
+        required: true
+        type: string
+      ACR_REPO_NAME:
+        required: true
+        type: string
+    secrets:
+      ACR_LOGIN_SERVER:
+        required: true
+      ACR_TOKEN_NAME:
+        required: true
+      ACR_TOKEN_PASS:
+        required: true
+
+jobs:
+  build-and-publish-container-image:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.ENVIRONMENT }}
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Login to Azure Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ secrets.ACR_LOGIN_SERVER }}
+        username: ${{ secrets.ACR_TOKEN_NAME }}
+        password: ${{ secrets.ACR_TOKEN_PASS }}
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build and push
+      id: build-and-push
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        push: true
+        tags: ${{ secrets.ACR_LOGIN_SERVER }}/${{ inputs.ACR_REPO_NAME }}:${{ github.sha }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
