@@ -5,9 +5,15 @@
     "vscode": {
       "extensions": [
         "github.copilot",
+        "ms-azuretools.vscode-bicep",
         "yzhang.markdown-all-in-one",
         "davidanson.vscode-markdownlint",
-        "streetsidesoftware.code-spell-checker"
+        "streetsidesoftware.code-spell-checker",
+        "rosshamish.kuskus-kusto-syntax-highlighting",
+        "ms-python.python",
+        "ms-azuretools.vscode-azurefunctions",
+        "ms-vscode.vscode-node-azure-pack",
+        "humao.rest-client"
       ]
     },
     "codespaces": {}
