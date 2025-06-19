@@ -38,6 +38,8 @@ jobs:
       with:
         context: .
         push: true
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
         tags: |
           ${{ secrets.ACR_LOGIN_SERVER }}/${{ inputs.ACR_REPO_NAME }}:${{ github.sha }}
           ${{ secrets.ACR_LOGIN_SERVER }}/${{ inputs.ACR_REPO_NAME }}:latest
