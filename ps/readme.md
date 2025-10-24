@@ -10,14 +10,15 @@
 | `Get-AzResourceGroup \| Format-Table`                              | -                                |
 | `Get-AzLocation \| Format-Table -Property Location, DisplayName`   | -                                |
 
-## Index
-
-- [Create rg][100]
-- [Create vnet][101]
-- [Create snet][102]
-- [Create pip][103]
-- [Azure Firewall Premium Hands on Lab][6]
-- [Azure Watcher Connection Monitor][104]
+- [PowerShell](#powershell)
+  - [Create rg](#create-rg)
+  - [Create vnet](#create-vnet)
+  - [Create snet](#create-snet)
+  - [Create pip](#create-pip)
+  - [Start and Stop agw](#start-and-stop-agw)
+  - [Set Subscription Key in APIM](#set-subscription-key-in-apim)
+  - [Create an Azure Network Watcher Connection Monitor](#create-an-azure-network-watcher-connection-monitor)
+  - [Additional Resources](#additional-resources)
 
 ## Create rg
 
@@ -97,6 +98,16 @@ $AppGW = Get-AzApplicationGateway -Name "agw_name" -ResourceGroupName "rg_name"
 Stop-AzApplicationGateway -ApplicationGateway $AppGW
 
 Start-AzApplicationGateway -ApplicationGateway $AppGW
+```
+
+## Set Subscription Key in APIM
+
+```PowerShell
+$source = New-AzApiManagementContext -ResourceGroupName "<rg_name_apim1>" -ServiceName "<rg_name_apim1>"; echo $source
+$target = New-AzApiManagementContext -ResourceGroupName "<rg_name_apim2>" -ServiceName "<rg_name_apim2>"; echo $target
+
+$keySet = Get-AzApiManagementSubscriptionKey -Context $source -SubscriptionId "master"; echo $keySet
+Set-AzApiManagementSubscription -Context $target -SubscriptionId "master" -PrimaryKey $keySet.PrimaryKey -SecondaryKey $keySet.SecondaryKey
 ```
 
 ## Create an Azure Network Watcher Connection Monitor
@@ -200,8 +211,3 @@ New-AzNetworkWatcherConnectionMonitor -NetworkWatcherName $nw -ResourceGroupName
 [5]: https://docs.microsoft.com/en-us/powershell/module/az.network/new-azpublicipaddress?view=azps-5.7.0
 [6]: https://github.com/ArtiomLK/azure-firewall-premium-lab
 [7]: https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-powershell
-[100]: #create-rg
-[101]: #create-vnet
-[102]: #create-snet
-[103]: #create-pip
-[104]: #create-an-azure-network-watcher-connection-monitor
