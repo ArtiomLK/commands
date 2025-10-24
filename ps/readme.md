@@ -213,13 +213,14 @@ New-AzNetworkWatcherConnectionMonitor -NetworkWatcherName $nw -ResourceGroupName
 ## Additional Resources
 
 - [ALK | Lab | Azure Firewall Premium][6]
-- [MS | Docs | Get-AzLocations][1]
-- [MS | Docs | New-AzResourceGroup][2]
-- [MS | Docs | New-AzVirtualNetwork][3]
-- [MS | Docs | Add-AzVirtualNetworkSubnetConfig][4]
-- [MS | Docs | New-AzPublicIpAddress][5]
+- Commands
+  - [MS | Docs | Get-AzLocations][1]
+  - [MS | Docs | New-AzResourceGroup][2]
+  - [MS | Docs | New-AzVirtualNetwork][3]
+  - [MS | Docs | Add-AzVirtualNetworkSubnetConfig][4]
+  - [MS | Docs | New-AzPublicIpAddress][5]
 - Connection Monitor
-- [MS | Learn | Create an Azure Network Watcher connection monitor using PowerShell][7]
+  - [MS | Learn | Create an Azure Network Watcher connection monitor using PowerShell][7]
 
 [1]: https://docs.microsoft.com/en-us/powershell/module/az.resources/get-azlocation?view=azps-5.7.0
 [2]: https://docs.microsoft.com/en-us/powershell/module/az.resources/new-azresourcegroup?view=azps-5.7.0
