@@ -13,12 +13,21 @@
 | `export MSYS_NO_PATHCONV=1`                                                   | avoids the C:/Program Files/Git/ being appended          |
 | `az vm list-skus --location centralus --size Standard_D --all --output table` | Determine which SKUs are available in a location or zone |
 
-## Index
+## Table of Contents
 
-- [Create vnet peering][100]
-- [Create RG][101]
-- [Create App Registration][102]
-- [Register Resource Provider][103]
+- [Bash](#bash)
+  - [Table of Contents](#table-of-contents)
+  - [Create vnet peering](#create-vnet-peering)
+  - [Create RG](#create-rg)
+  - [Create App Registration](#create-app-registration)
+  - [Register Resource Provider](#register-resource-provider)
+  - [Start and Stop agw](#start-and-stop-agw)
+  - [Create NSG](#create-nsg)
+  - [Delete Multiple Resource Groups](#delete-multiple-resource-groups)
+  - [Init GH Codespaces and VSCode Conf](#init-gh-codespaces-and-vscode-conf)
+  - [Open ID Connect (OIDC) for GitHub Actions](#open-id-connect-oidc-for-github-actions)
+  - [AZURE\_CREDENTIALS Template](#azure_credentials-template)
+    - [Additional Resources](#additional-resources)
 
 ## Create vnet peering
 
@@ -54,6 +63,8 @@ az network vnet peering create \
 --allow-vnet-access
 ```
 
+[⬆](#table-of-contents)
+
 ## Create RG
 
 ```bash
@@ -70,6 +81,8 @@ az group create \
 --location $l \
 --tags $tags
 ```
+
+[⬆](#table-of-contents)
 
 ## Create App Registration
 
@@ -110,6 +123,8 @@ az role assignment create \
 --scope "/subscriptions/$sub_id"
 ```
 
+[⬆](#table-of-contents)
+
 ## Register Resource Provider
 
 ```bash
@@ -135,12 +150,16 @@ do
 done
 ```
 
+[⬆](#table-of-contents)
+
 ## Start and Stop agw
 
 ```bash
 az network application-gateway stop --id "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/rg-name/providers/Microsoft.Network/applicationGateways/agw-name"
 az network application-gateway start --id "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/rg-name/providers/Microsoft.Network/applicationGateways/agw-name"
 ```
+
+[⬆](#table-of-contents)
 
 ## Create NSG
 
@@ -156,6 +175,8 @@ az network nsg create \
 --location $l \
 --tags $tags
 ```
+
+[⬆](#table-of-contents)
 
 ## Delete Multiple Resource Groups
 
@@ -201,6 +222,8 @@ az group delete \
 done
 ```
 
+[⬆](#table-of-contents)
+
 ## Init GH Codespaces and VSCode Conf
 
 ```bash
@@ -210,6 +233,8 @@ mv commands-main/.devcontainer ./
 mv commands-main/.vscode ./
 rm -rf commands-main repo.zip
 ```
+
+[⬆](#table-of-contents)
 
 ## Open ID Connect (OIDC) for GitHub Actions
 
@@ -266,6 +291,8 @@ az account show --query tenantId -o tsv
 az account show --query id -o tsv
 ```
 
+[⬆](#table-of-contents)
+
 ## AZURE_CREDENTIALS Template
 
 ```json
@@ -300,7 +327,3 @@ az account show --query id -o tsv
 [2]: https://learn.microsoft.com/en-us/azure/azure-resource-manager/troubleshooting/error-sku-not-available
 [3]: https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-register
 [4]: https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-azure
-[100]: #create-vnet-peering
-[101]: #create-rg
-[102]: #create-app-registration
-[103]: #register-resource-provider

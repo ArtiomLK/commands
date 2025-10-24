@@ -10,14 +10,18 @@
 | `Get-AzResourceGroup \| Format-Table`                              | -                                |
 | `Get-AzLocation \| Format-Table -Property Location, DisplayName`   | -                                |
 
-## Index
+## Table of Contents
 
-- [Create rg][100]
-- [Create vnet][101]
-- [Create snet][102]
-- [Create pip][103]
-- [Azure Firewall Premium Hands on Lab][6]
-- [Azure Watcher Connection Monitor][104]
+- [PowerShell](#powershell)
+  - [Table of Contents](#table-of-contents)
+  - [Create rg](#create-rg)
+  - [Create vnet](#create-vnet)
+  - [Create snet](#create-snet)
+  - [Create pip](#create-pip)
+  - [Start and Stop agw](#start-and-stop-agw)
+  - [Set Subscription Key in APIM](#set-subscription-key-in-apim)
+  - [Create an Azure Network Watcher Connection Monitor](#create-an-azure-network-watcher-connection-monitor)
+  - [Additional Resources](#additional-resources)
 
 ## Create rg
 
@@ -33,6 +37,8 @@ $rg = @{
 # Create an Azure ResourceGroup
 New-AzResourceGroup @rg
 ```
+
+[⬆](#table-of-contents)
 
 ## Create vnet
 
@@ -50,6 +56,8 @@ $vNet = @{
 # Create the VNet
 $virtualNetwork = New-AzVirtualNetwork @vnet
 ```
+
+[⬆](#table-of-contents)
 
 ## Create snet
 
@@ -70,6 +78,8 @@ $virtualNetwork | Add-AzVirtualNetworkSubnetConfig -Name $subNet.Name -AddressPr
 $virtualNetwork | Set-AzVirtualNetwork
 ```
 
+[⬆](#table-of-contents)
+
 ## Create pip
 
 Run the following commands in PowerShell to create an Azure Public IP
@@ -89,6 +99,8 @@ $PublicIpVars = @{
 $PublicIp = New-AzPublicIpAddress @PublicIpVars
 ```
 
+[⬆](#table-of-contents)
+
 ## Start and Stop agw
 
 ```PowerShell
@@ -98,6 +110,20 @@ Stop-AzApplicationGateway -ApplicationGateway $AppGW
 
 Start-AzApplicationGateway -ApplicationGateway $AppGW
 ```
+
+[⬆](#table-of-contents)
+
+## Set Subscription Key in APIM
+
+```PowerShell
+$source = New-AzApiManagementContext -ResourceGroupName "<rg_name_apim1>" -ServiceName "<rg_name_apim1>"; echo $source
+$target = New-AzApiManagementContext -ResourceGroupName "<rg_name_apim2>" -ServiceName "<rg_name_apim2>"; echo $target
+
+$keySet = Get-AzApiManagementSubscriptionKey -Context $source -SubscriptionId "master"; echo $keySet
+Set-AzApiManagementSubscription -Context $target -SubscriptionId "master" -PrimaryKey $keySet.PrimaryKey -SecondaryKey $keySet.SecondaryKey
+```
+
+[⬆](#table-of-contents)
 
 ## Create an Azure Network Watcher Connection Monitor
 
@@ -182,16 +208,19 @@ $testGroupInternetRef = New-AzNetworkWatcherConnectionMonitorTestGroupObject -Na
 New-AzNetworkWatcherConnectionMonitor -NetworkWatcherName $nw -ResourceGroupName NetworkWatcherRG -Name $connectionMonitorName -TestGroup $testGroupOnPremRef, $testGroupInternetRef -Force
 ```
 
+[⬆](#table-of-contents)
+
 ## Additional Resources
 
 - [ALK | Lab | Azure Firewall Premium][6]
-- [MS | Docs | Get-AzLocations][1]
-- [MS | Docs | New-AzResourceGroup][2]
-- [MS | Docs | New-AzVirtualNetwork][3]
-- [MS | Docs | Add-AzVirtualNetworkSubnetConfig][4]
-- [MS | Docs | New-AzPublicIpAddress][5]
+- Commands
+  - [MS | Docs | Get-AzLocations][1]
+  - [MS | Docs | New-AzResourceGroup][2]
+  - [MS | Docs | New-AzVirtualNetwork][3]
+  - [MS | Docs | Add-AzVirtualNetworkSubnetConfig][4]
+  - [MS | Docs | New-AzPublicIpAddress][5]
 - Connection Monitor
-- [MS | Learn | Create an Azure Network Watcher connection monitor using PowerShell][7]
+  - [MS | Learn | Create an Azure Network Watcher connection monitor using PowerShell][7]
 
 [1]: https://docs.microsoft.com/en-us/powershell/module/az.resources/get-azlocation?view=azps-5.7.0
 [2]: https://docs.microsoft.com/en-us/powershell/module/az.resources/new-azresourcegroup?view=azps-5.7.0
@@ -200,8 +229,3 @@ New-AzNetworkWatcherConnectionMonitor -NetworkWatcherName $nw -ResourceGroupName
 [5]: https://docs.microsoft.com/en-us/powershell/module/az.network/new-azpublicipaddress?view=azps-5.7.0
 [6]: https://github.com/ArtiomLK/azure-firewall-premium-lab
 [7]: https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-create-using-powershell
-[100]: #create-rg
-[101]: #create-vnet
-[102]: #create-snet
-[103]: #create-pip
-[104]: #create-an-azure-network-watcher-connection-monitor
