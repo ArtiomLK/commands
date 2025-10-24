@@ -20,6 +20,8 @@
   - [Create an Azure Network Watcher Connection Monitor](#create-an-azure-network-watcher-connection-monitor)
   - [Additional Resources](#additional-resources)
 
+[⬆ Back to Top](#powershell)
+
 ## Create rg
 
 Run the following commands in PowerShell to create an Azure Resource Group
@@ -34,6 +36,8 @@ $rg = @{
 # Create an Azure ResourceGroup
 New-AzResourceGroup @rg
 ```
+
+[⬆ Back to Top](#powershell)
 
 ## Create vnet
 
@@ -51,6 +55,8 @@ $vNet = @{
 # Create the VNet
 $virtualNetwork = New-AzVirtualNetwork @vnet
 ```
+
+[⬆ Back to Top](#powershell)
 
 ## Create snet
 
@@ -71,6 +77,8 @@ $virtualNetwork | Add-AzVirtualNetworkSubnetConfig -Name $subNet.Name -AddressPr
 $virtualNetwork | Set-AzVirtualNetwork
 ```
 
+[⬆ Back to Top](#powershell)
+
 ## Create pip
 
 Run the following commands in PowerShell to create an Azure Public IP
@@ -90,6 +98,8 @@ $PublicIpVars = @{
 $PublicIp = New-AzPublicIpAddress @PublicIpVars
 ```
 
+[⬆ Back to Top](#powershell)
+
 ## Start and Stop agw
 
 ```PowerShell
@@ -100,6 +110,8 @@ Stop-AzApplicationGateway -ApplicationGateway $AppGW
 Start-AzApplicationGateway -ApplicationGateway $AppGW
 ```
 
+[⬆ Back to Top](#powershell)
+
 ## Set Subscription Key in APIM
 
 ```PowerShell
@@ -109,6 +121,8 @@ $target = New-AzApiManagementContext -ResourceGroupName "<rg_name_apim2>" -Servi
 $keySet = Get-AzApiManagementSubscriptionKey -Context $source -SubscriptionId "master"; echo $keySet
 Set-AzApiManagementSubscription -Context $target -SubscriptionId "master" -PrimaryKey $keySet.PrimaryKey -SecondaryKey $keySet.SecondaryKey
 ```
+
+[⬆ Back to Top](#powershell)
 
 ## Create an Azure Network Watcher Connection Monitor
 
@@ -192,6 +206,8 @@ $testGroupInternetRef = New-AzNetworkWatcherConnectionMonitorTestGroupObject -Na
 # Create Connection Monitor and confirm to all
 New-AzNetworkWatcherConnectionMonitor -NetworkWatcherName $nw -ResourceGroupName NetworkWatcherRG -Name $connectionMonitorName -TestGroup $testGroupOnPremRef, $testGroupInternetRef -Force
 ```
+
+[⬆ Back to Top](#powershell)
 
 ## Additional Resources
 
