@@ -10,7 +10,10 @@
 | `Get-AzResourceGroup \| Format-Table`                              | -                                |
 | `Get-AzLocation \| Format-Table -Property Location, DisplayName`   | -                                |
 
+## Table of Contents
+
 - [PowerShell](#powershell)
+  - [Table of Contents](#table-of-contents)
   - [Create rg](#create-rg)
   - [Create vnet](#create-vnet)
   - [Create snet](#create-snet)
@@ -19,8 +22,6 @@
   - [Set Subscription Key in APIM](#set-subscription-key-in-apim)
   - [Create an Azure Network Watcher Connection Monitor](#create-an-azure-network-watcher-connection-monitor)
   - [Additional Resources](#additional-resources)
-
-[⬆ Back to Top](#powershell)
 
 ## Create rg
 
@@ -37,7 +38,7 @@ $rg = @{
 New-AzResourceGroup @rg
 ```
 
-[⬆ Back to Top](#powershell)
+[⬆](#table-of-contents)
 
 ## Create vnet
 
@@ -56,7 +57,7 @@ $vNet = @{
 $virtualNetwork = New-AzVirtualNetwork @vnet
 ```
 
-[⬆ Back to Top](#powershell)
+[⬆](#table-of-contents)
 
 ## Create snet
 
@@ -77,7 +78,7 @@ $virtualNetwork | Add-AzVirtualNetworkSubnetConfig -Name $subNet.Name -AddressPr
 $virtualNetwork | Set-AzVirtualNetwork
 ```
 
-[⬆ Back to Top](#powershell)
+[⬆](#table-of-contents)
 
 ## Create pip
 
@@ -98,7 +99,7 @@ $PublicIpVars = @{
 $PublicIp = New-AzPublicIpAddress @PublicIpVars
 ```
 
-[⬆ Back to Top](#powershell)
+[⬆](#table-of-contents)
 
 ## Start and Stop agw
 
@@ -110,7 +111,7 @@ Stop-AzApplicationGateway -ApplicationGateway $AppGW
 Start-AzApplicationGateway -ApplicationGateway $AppGW
 ```
 
-[⬆ Back to Top](#powershell)
+[⬆](#table-of-contents)
 
 ## Set Subscription Key in APIM
 
@@ -122,7 +123,7 @@ $keySet = Get-AzApiManagementSubscriptionKey -Context $source -SubscriptionId "m
 Set-AzApiManagementSubscription -Context $target -SubscriptionId "master" -PrimaryKey $keySet.PrimaryKey -SecondaryKey $keySet.SecondaryKey
 ```
 
-[⬆ Back to Top](#powershell)
+[⬆](#table-of-contents)
 
 ## Create an Azure Network Watcher Connection Monitor
 
@@ -207,7 +208,7 @@ $testGroupInternetRef = New-AzNetworkWatcherConnectionMonitorTestGroupObject -Na
 New-AzNetworkWatcherConnectionMonitor -NetworkWatcherName $nw -ResourceGroupName NetworkWatcherRG -Name $connectionMonitorName -TestGroup $testGroupOnPremRef, $testGroupInternetRef -Force
 ```
 
-[⬆ Back to Top](#powershell)
+[⬆](#table-of-contents)
 
 ## Additional Resources
 
