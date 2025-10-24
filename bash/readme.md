@@ -63,6 +63,8 @@ az network vnet peering create \
 --allow-vnet-access
 ```
 
+[⬆](#table-of-contents)
+
 ## Create RG
 
 ```bash
@@ -79,6 +81,8 @@ az group create \
 --location $l \
 --tags $tags
 ```
+
+[⬆](#table-of-contents)
 
 ## Create App Registration
 
@@ -119,6 +123,8 @@ az role assignment create \
 --scope "/subscriptions/$sub_id"
 ```
 
+[⬆](#table-of-contents)
+
 ## Register Resource Provider
 
 ```bash
@@ -144,12 +150,16 @@ do
 done
 ```
 
+[⬆](#table-of-contents)
+
 ## Start and Stop agw
 
 ```bash
 az network application-gateway stop --id "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/rg-name/providers/Microsoft.Network/applicationGateways/agw-name"
 az network application-gateway start --id "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/rg-name/providers/Microsoft.Network/applicationGateways/agw-name"
 ```
+
+[⬆](#table-of-contents)
 
 ## Create NSG
 
@@ -165,6 +175,8 @@ az network nsg create \
 --location $l \
 --tags $tags
 ```
+
+[⬆](#table-of-contents)
 
 ## Delete Multiple Resource Groups
 
@@ -210,6 +222,8 @@ az group delete \
 done
 ```
 
+[⬆](#table-of-contents)
+
 ## Init GH Codespaces and VSCode Conf
 
 ```bash
@@ -219,6 +233,8 @@ mv commands-main/.devcontainer ./
 mv commands-main/.vscode ./
 rm -rf commands-main repo.zip
 ```
+
+[⬆](#table-of-contents)
 
 ## Open ID Connect (OIDC) for GitHub Actions
 
@@ -274,6 +290,8 @@ az account show --query tenantId -o tsv
 # AZURE_SUBSCRIPTION_ID: Value: The subscription ID of your Azure account.
 az account show --query id -o tsv
 ```
+
+[⬆](#table-of-contents)
 
 ## AZURE_CREDENTIALS Template
 
