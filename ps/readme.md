@@ -89,6 +89,16 @@ $PublicIpVars = @{
 $PublicIp = New-AzPublicIpAddress @PublicIpVars
 ```
 
+## Start and Stop agw
+
+```PowerShell
+$AppGW = Get-AzApplicationGateway -Name "agw_name" -ResourceGroupName "rg_name"
+
+Stop-AzApplicationGateway -ApplicationGateway $AppGW
+
+Start-AzApplicationGateway -ApplicationGateway $AppGW
+```
+
 ## Create an Azure Network Watcher Connection Monitor
 
 ```PowerShell
@@ -172,8 +182,6 @@ $testGroupInternetRef = New-AzNetworkWatcherConnectionMonitorTestGroupObject -Na
 New-AzNetworkWatcherConnectionMonitor -NetworkWatcherName $nw -ResourceGroupName NetworkWatcherRG -Name $connectionMonitorName -TestGroup $testGroupOnPremRef, $testGroupInternetRef -Force
 ```
 
-Create an Azure Network Watcher Connection Monitor
-
 ## Additional Resources
 
 - [ALK | Lab | Azure Firewall Premium][6]
@@ -184,16 +192,6 @@ Create an Azure Network Watcher Connection Monitor
 - [MS | Docs | New-AzPublicIpAddress][5]
 - Connection Monitor
 - [MS | Learn | Create an Azure Network Watcher connection monitor using PowerShell][7]
-
-## Start and Stop agw
-
-```PowerShell
-$AppGW = Get-AzApplicationGateway -Name "agw_name" -ResourceGroupName "rg_name"
-
-Stop-AzApplicationGateway -ApplicationGateway $AppGW
-
-Start-AzApplicationGateway -ApplicationGateway $AppGW
-```
 
 [1]: https://docs.microsoft.com/en-us/powershell/module/az.resources/get-azlocation?view=azps-5.7.0
 [2]: https://docs.microsoft.com/en-us/powershell/module/az.resources/new-azresourcegroup?view=azps-5.7.0
