@@ -71,8 +71,8 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS_ACR }}
 
     - name: Publish bicep module to ACR
-      uses: azure/CLI@v1
+      uses: azure/CLI@v2
       with:
-        azcliversion: 2.50.0
+        azcliversion: 2.81.0
         inlineScript: |
           az bicep publish --file ${{ inputs.MAIN_BICEP_FILE_PATH }} --target "br:${{ secrets.ACR_LOGIN_SERVER }}/bicep/modules/${{ inputs.ACR_MODULE_N }}:${{ github.sha }}" --force
