@@ -1,5 +1,6 @@
 # Useful Commands
 
+- [Git][15]
 - [Bash][1]
 - [PowerShell - ps][2]
 
@@ -39,3 +40,4 @@
 [12]: https://www.azurespeed.com/Azure/Latency
 [13]: https://azurecharts.com/
 [14]: https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits
+[15]: bash/git.md
