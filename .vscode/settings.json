@@ -25,5 +25,19 @@
     "plaintext": false,
     "markdown": true,
     "scminput": false
+  },
+  "terminal.integrated.profiles.windows": {
+    "PowerShell 5.1": {
+      "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "icon": "terminal-powershell"
+    },
+    "PowerShell 7.4": {
+      "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+      "icon": "terminal-powershell"
+    },
+    "PowerShell 7.4 Preview": {
+      "path": "C:\\Program Files\\PowerShell\\7-preview\\pwsh.exe",
+      "icon": "terminal-powershell"
+    }
   }
 }
