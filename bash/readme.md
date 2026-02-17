@@ -17,6 +17,7 @@
 
 - [Bash](#bash)
   - [Table of Contents](#table-of-contents)
+  - [Update bashrc from remote source](#update-bashrc-from-remote-source)
   - [Create vnet peering](#create-vnet-peering)
   - [Create RG](#create-rg)
   - [Create App Registration](#create-app-registration)
@@ -28,6 +29,13 @@
   - [Open ID Connect (OIDC) for GitHub Actions](#open-id-connect-oidc-for-github-actions)
   - [AZURE\_CREDENTIALS Template](#azure_credentials-template)
     - [Additional Resources](#additional-resources)
+
+## Update bashrc from remote source
+
+```bash
+cp ~/.bashrc ~/.bashrc.bak
+curl -fsSL https://artiomlk.com/bashrc -o ~/.bashrc && source ~/.bashrc && hash -r
+```
 
 ## Create vnet peering
 
