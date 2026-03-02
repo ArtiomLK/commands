@@ -177,6 +177,7 @@ Recommended abbreviations for Azure resources based on the [Cloud Adoption Frame
 | Azure Monitor data collection rule  | `dcr`             |
 | Azure Monitor alert processing rule | `apr`             |
 | Data collection endpoint            | `dce`             |
+| Diagnostic settings                 | `ds`              |
 | Deployment scripts                  | `script`          |
 | Log Analytics workspace             | `log`             |
 | Log Analytics query packs           | `pack`            |
@@ -417,6 +418,7 @@ Full namespace mappings for each resource listed above.
 | Azure Monitor data collection rule               | `dcr`                 | `Microsoft.Insights/dataCollectionRules`                                 |
 | Azure Monitor alert processing rule              | `apr`                 | `Microsoft.AlertsManagement/actionRules`                                 |
 | Data collection endpoint                         | `dce`                 | `Microsoft.Insights/dataCollectionEndpoints`                             |
+| Diagnostic settings                              | `ds`                  | `Microsoft.Insights/diagnosticSettings`                                  |
 | Deployment scripts                               | `script`              | `Microsoft.Resources/deploymentScripts`                                  |
 | Log Analytics workspace                          | `log`                 | `Microsoft.OperationalInsights/workspaces`                               |
 | Log Analytics query packs                        | `pack`                | `Microsoft.OperationalInsights/querypacks`                               |
