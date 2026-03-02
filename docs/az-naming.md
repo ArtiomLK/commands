@@ -229,7 +229,7 @@ Recommended abbreviations for Azure resources based on the [Cloud Adoption Frame
 | Network security group (NSG) security rules | `nsgsr`               |
 | Network Watcher                             | `nw`                  |
 | Private Link                                | `pl`                  |
-| Private endpoint                            | `pep`                 |
+| Private endpoint                            | `pe`                  |
 | Public IP address                           | `pip`                 |
 | Public IP address prefix                    | `ippre`               |
 | Route filter                                | `rf`                  |
