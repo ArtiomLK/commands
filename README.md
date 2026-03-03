@@ -10,6 +10,7 @@
 - [Diagnostic Settings][6]
 - [Troubleshoot Network Connectivity][5]
 - [(MFARequired) Quota requests needs Multi-Factor Authentication][6]
+- [ArtiomLK Abbreviation recommendations for Azure resources][16]
 
 ## Additional Resources
 
@@ -41,3 +42,4 @@
 [13]: https://azurecharts.com/
 [14]: https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits
 [15]: bash/git.md
+[16]: ./docs/az-naming.md
