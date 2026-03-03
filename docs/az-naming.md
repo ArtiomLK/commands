@@ -3,23 +3,25 @@
 Recommended abbreviations for Azure resources based on the [Cloud Adoption Framework](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations).
 
 > **Note:** All endpoints require `https://` — it is omitted from examples below for brevity.
+>
+> **⚠️ Disclaimer:** The API endpoint examples in this document are for illustration purposes only and may be inaccurate or outdated. Always verify against the [official Azure documentation](https://learn.microsoft.com/en-us/azure).
 
 ---
 
 ## AI + Machine Learning
 
-| Resource                              | Abbreviation | API Endpoint Example |
+| Resource                              | Abbreviation | API Endpoint Example                     |
 | ------------------------------------- | ------------ | ---------------------------------------- |
 | AI Search                             | `srch`       | `srch-app1.search.windows.net`           |
 | Foundry Tools (multi-service account) | `ais`        | `ais-app1.cognitiveservices.azure.com`   |
 | Foundry account                       | `aif`        | `aif-app1.cognitiveservices.azure.com`   |
-| Foundry account project               | `proj`       | `proj-app1`                              |
-| Foundry hub                           | `hub`        | `hub-app1`                               |
-| Foundry hub project                   | `proj`       | `proj-app1`                              |
-| Azure AI Video Indexer                | `avi`        | `avi-app1`                               |
+| Foundry account project               | `proj`       |                                          |
+| Foundry hub                           | `hub`        |                                          |
+| Foundry hub project                   | `proj`       |                                          |
+| Azure AI Video Indexer                | `avi`        |                                          |
 | Azure Machine Learning workspace      | `mlw`        | `mlw-app1.api.azureml.ms`                |
 | Azure OpenAI Service                  | `oai`        | `oai-app1.openai.azure.com`              |
-| Bot service                           | `bot`        | `bot-app1`                               |
+| Bot service                           | `bot`        |                                          |
 | Computer vision                       | `cv`         | `cv-app1.cognitiveservices.azure.com`    |
 | Content moderator                     | `cm`         | `cm-app1.cognitiveservices.azure.com`    |
 | Content safety                        | `cs`         | `cs-app1.cognitiveservices.azure.com`    |
@@ -35,29 +37,29 @@ Recommended abbreviations for Azure resources based on the [Cloud Adoption Frame
 
 ## Analytics and IoT
 
-| Resource                                   | Abbreviation | API Endpoint Example |
+| Resource                                   | Abbreviation | API Endpoint Example                           |
 | ------------------------------------------ | ------------ | ---------------------------------------------- |
 | Azure Analysis Services server             | `as`         | `asazure://eastus.asazure.windows.net/as-app1` |
-| Azure Databricks Access Connector          | `dbac`       | `dbac-app1`                                    |
+| Azure Databricks Access Connector          | `dbac`       |                                                |
 | Azure Databricks workspace                 | `dbw`        | `adb-dbw-app1.azuredatabricks.net`             |
 | Azure Data Explorer cluster                | `dec`        | `dec-app1.eastus.kusto.windows.net`            |
-| Azure Data Explorer cluster database       | `dedb`       | `dedb-app1`                                    |
+| Azure Data Explorer cluster database       | `dedb`       |                                                |
 | Azure Data Factory                         | `adf`        | `adf-app1.adf.azure.com`                       |
 | Azure Digital Twin instance                | `dt`         | `dt-app1.api.eus.digitaltwins.azure.net`       |
-| Azure Stream Analytics                     | `asa`        | `asa-app1`                                     |
-| Azure Synapse Analytics private link hub   | `synplh`     | `synplh-app1`                                  |
-| Azure Synapse Analytics SQL Dedicated Pool | `syndp`      | `syndp-app1`                                   |
-| Azure Synapse Analytics Spark Pool         | `synsp`      | `synsp-app1`                                   |
+| Azure Stream Analytics                     | `asa`        |                                                |
+| Azure Synapse Analytics private link hub   | `synplh`     |                                                |
+| Azure Synapse Analytics SQL Dedicated Pool | `syndp`      |                                                |
+| Azure Synapse Analytics Spark Pool         | `synsp`      |                                                |
 | Azure Synapse Analytics workspaces         | `synw`       | `synw-app1.dev.azuresynapse.net`               |
 | Data Lake Store account                    | `dls`        | `dls-app1.azuredatalakestore.net`              |
 | Event Hubs namespace                       | `evhns`      | `evhns-app1.servicebus.windows.net`            |
-| Event hub                                  | `evh`        | `evh-app1`                                     |
-| Event Grid domain                          | `evgd`       | `evgd-app1`                                    |
-| Event Grid namespace                       | `evgns`      | `evgns-app1`                                   |
-| Event Grid subscriptions                   | `evgs`       | `evgs-app1`                                    |
-| Event Grid topic                           | `evgt`       | `evgt-app1`                                    |
-| Event Grid system topic                    | `egst`       | `egst-app1`                                    |
-| Fabric Capacity                            | `fc`         | `fc-app1`                                      |
+| Event hub                                  | `evh`        |                                                |
+| Event Grid domain                          | `evgd`       |                                                |
+| Event Grid namespace                       | `evgns`      |                                                |
+| Event Grid subscriptions                   | `evgs`       |                                                |
+| Event Grid topic                           | `evgt`       |                                                |
+| Event Grid system topic                    | `egst`       |                                                |
+| Fabric Capacity                            | `fc`         |                                                |
 | HDInsight - Hadoop cluster                 | `hadoop`     | `hadoop-app1.azurehdinsight.net`               |
 | HDInsight - HBase cluster                  | `hbase`      | `hbase-app1.azurehdinsight.net`                |
 | HDInsight - Kafka cluster                  | `kafka`      | `kafka-app1.azurehdinsight.net`                |
@@ -66,64 +68,64 @@ Recommended abbreviations for Azure resources based on the [Cloud Adoption Frame
 | HDInsight - ML Services cluster            | `mls`        | `mls-app1.azurehdinsight.net`                  |
 | IoT hub                                    | `iot`        | `iot-app1.azure-devices.net`                   |
 | Provisioning services                      | `provs`      | `provs-app1.azure-devices-provisioning.net`    |
-| Provisioning services certificate          | `pcert`      | `pcert-app1`                                   |
-| Power BI Embedded                          | `pbi`        | `pbi-app1`                                     |
+| Provisioning services certificate          | `pcert`      |                                                |
+| Power BI Embedded                          | `pbi`        |                                                |
 | Time Series Insights environment           | `tsi`        | `tsi-app1.env.timeseries.azure.com`            |
 
 ## Compute and Web
 
-| Resource                                  | Abbreviation | API Endpoint Example |
+| Resource                                  | Abbreviation | API Endpoint Example                |
 | ----------------------------------------- | ------------ | ----------------------------------- |
-| App Service environment                   | `ase`        | `ase-app1`                          |
-| App Service plan                          | `asp`        | `asp-app1`                          |
-| Azure Load Testing instance               | `lt`         | `lt-app1`                           |
-| Availability set                          | `avail`      | `avail-app1`                        |
-| Azure Arc enabled server                  | `arcs`       | `arcs-app1`                         |
-| Azure Arc enabled Kubernetes cluster      | `arck`       | `arck-app1`                         |
-| Azure Arc private link scope              | `pls`        | `pls-app1`                          |
-| Azure Arc gateway                         | `arcgw`      | `arcgw-app1`                        |
+| App Service environment                   | `ase`        |                                     |
+| App Service plan                          | `asp`        |                                     |
+| Azure Load Testing instance               | `lt`         |                                     |
+| Availability set                          | `avail`      |                                     |
+| Azure Arc enabled server                  | `arcs`       |                                     |
+| Azure Arc enabled Kubernetes cluster      | `arck`       |                                     |
+| Azure Arc private link scope              | `pls`        |                                     |
+| Azure Arc gateway                         | `arcgw`      |                                     |
 | Batch accounts                            | `ba`         | `ba-app1.eastus.batch.azure.com`    |
 | Cloud service                             | `cld`        | `cld-app1.cloudapp.net`             |
-| Communication Services                    | `acs`        | `acs-app1`                          |
-| Disk encryption set                       | `des`        | `des-app1`                          |
+| Communication Services                    | `acs`        |                                     |
+| Disk encryption set                       | `des`        |                                     |
 | Function app                              | `func`       | `func-app1.azurewebsites.net`       |
-| Gallery                                   | `gal`        | `gal-app1`                          |
-| Hosting environment                       | `host`       | `host-app1`                         |
-| Image template                            | `it`         | `it-app1`                           |
-| Managed disk (OS)                         | `osdisk`     | `osdisk-app1`                       |
-| Managed disk (data)                       | `disk`       | `disk-app1`                         |
-| Notification Hubs                         | `ntf`        | `ntf-app1`                          |
+| Gallery                                   | `gal`        |                                     |
+| Hosting environment                       | `host`       |                                     |
+| Image template                            | `it`         |                                     |
+| Managed disk (OS)                         | `osdisk`     |                                     |
+| Managed disk (data)                       | `disk`       |                                     |
+| Notification Hubs                         | `ntf`        |                                     |
 | Notification Hubs namespace               | `ntfns`      | `ntfns-app1.servicebus.windows.net` |
-| Proximity placement group                 | `ppg`        | `ppg-app1`                          |
-| Restore point collection                  | `rpc`        | `rpc-app1`                          |
-| Snapshot                                  | `snap`       | `snap-app1`                         |
+| Proximity placement group                 | `ppg`        |                                     |
+| Restore point collection                  | `rpc`        |                                     |
+| Snapshot                                  | `snap`       |                                     |
 | Static web app                            | `stapp`      | `stapp-app1.azurestaticapps.net`    |
-| Virtual machine                           | `vm`         | `vm-app1`                           |
-| Virtual machine scale set                 | `vmss`       | `vmss-app1`                         |
-| Virtual machine maintenance configuration | `mc`         | `mc-app1`                           |
+| Virtual machine                           | `vm`         |                                     |
+| Virtual machine scale set                 | `vmss`       |                                     |
+| Virtual machine maintenance configuration | `mc`         |                                     |
 | VM storage account                        | `stvm`       | `stvmapp1.blob.core.windows.net`    |
 | Web app                                   | `app`        | `app-app1.azurewebsites.net`        |
 
 ## Containers
 
-| Resource                       | Abbreviation | API Endpoint Example |
+| Resource                       | Abbreviation | API Endpoint Example                     |
 | ------------------------------ | ------------ | ---------------------------------------- |
-| AKS cluster                    | `aks`        | `aks-app1`                               |
-| AKS system node pool           | `npsystem`   | `npsystem`                               |
-| AKS user node pool             | `np`         | `np-app1`                                |
+| AKS cluster                    | `aks`        |                                          |
+| AKS system node pool           | `npsystem`   |                                          |
+| AKS user node pool             | `np`         |                                          |
 | Container apps                 | `ca`         | `ca-app1.{region}.azurecontainerapps.io` |
-| Container apps environment     | `cae`        | `cae-app1`                               |
-| Container apps job             | `caj`        | `caj-app1`                               |
+| Container apps environment     | `cae`        |                                          |
+| Container apps job             | `caj`        |                                          |
 | Container registry             | `cr`         | `crapp1.azurecr.io`                      |
-| Container instance             | `ci`         | `ci-app1`                                |
+| Container instance             | `ci`         |                                          |
 | Service Fabric cluster         | `sf`         | `sf-app1.eastus.cloudapp.azure.com`      |
 | Service Fabric managed cluster | `sfmc`       | `sfmc-app1.eastus.cloudapp.azure.com`    |
 
 ## Databases
 
-| Resource                                     | Abbreviation | API Endpoint Example |
+| Resource                                     | Abbreviation | API Endpoint Example                       |
 | -------------------------------------------- | ------------ | ------------------------------------------ |
-| Azure Cosmos DB database                     | `cosmos`     | `cosmos-app1`                              |
+| Azure Cosmos DB database                     | `cosmos`     |                                            |
 | Azure Cosmos DB for Apache Cassandra account | `coscas`     | `coscas-app1.cassandra.cosmos.azure.com`   |
 | Azure Cosmos DB for MongoDB account          | `cosmon`     | `cosmon-app1.mongo.cosmos.azure.com`       |
 | Azure Cosmos DB for NoSQL account            | `cosno`      | `cosno-app1.documents.azure.com:443/`      |
@@ -133,155 +135,155 @@ Recommended abbreviations for Azure resources based on the [Cloud Adoption Frame
 | Azure Cache for Redis instance               | `redis`      | `redis-app1.redis.cache.windows.net:6380`  |
 | Azure Managed Redis                          | `amr`        | `amr-app1.redisenterprise.cache.azure.net` |
 | Azure SQL Database server                    | `sql`        | `sql-app1.database.windows.net`            |
-| Azure SQL database                           | `sqldb`      | `sqldb-app1`                               |
-| Azure SQL Elastic Job agent                  | `sqlja`      | `sqlja-app1`                               |
-| Azure SQL Elastic Pool                       | `sqlep`      | `sqlep-app1`                               |
+| Azure SQL database                           | `sqldb`      |                                            |
+| Azure SQL Elastic Job agent                  | `sqlja`      |                                            |
+| Azure SQL Elastic Pool                       | `sqlep`      |                                            |
 | MySQL database                               | `mysql`      | `mysql-app1.mysql.database.azure.com`      |
 | PostgreSQL database                          | `psql`       | `psql-app1.postgres.database.azure.com`    |
 | SQL Managed Instance                         | `sqlmi`      | `sqlmi-app1.database.windows.net`          |
 
 ## Developer Tools
 
-| Resource                | Abbreviation | API Endpoint Example |
+| Resource                | Abbreviation | API Endpoint Example            |
 | ----------------------- | ------------ | ------------------------------- |
 | App Configuration store | `appcs`      | `appcs-app1.azconfig.io`        |
-| Maps account            | `map`        | `map-app1`                      |
+| Maps account            | `map`        |                                 |
 | SignalR                 | `sigr`       | `sigr-app1.service.signalr.net` |
 | WebPubSub               | `wps`        | `wps-app1.webpubsub.azure.com`  |
 
 ## DevOps
 
-| Resource              | Abbreviation | API Endpoint Example |
+| Resource              | Abbreviation | API Endpoint Example         |
 | --------------------- | ------------ | ---------------------------- |
 | Azure Managed Grafana | `amg`        | `amg-app1.grafana.azure.com` |
-| Managed DevOps Pools  | `mdp`        | `mdp-app1`                   |
+| Managed DevOps Pools  | `mdp`        |                              |
 
 ## Integration
 
-| Resource                        | Abbreviation | API Endpoint Example |
+| Resource                        | Abbreviation | API Endpoint Example               |
 | ------------------------------- | ------------ | ---------------------------------- |
 | API management service instance | `apim`       | `apim-app1.azure-api.net`          |
-| Integration account             | `ia`         | `ia-app1`                          |
-| Logic app                       | `logic`      | `logic-app1`                       |
+| Integration account             | `ia`         |                                    |
+| Logic app                       | `logic`      |                                    |
 | Service Bus namespace           | `sbns`       | `sbns-app1.servicebus.windows.net` |
-| Service Bus queue               | `sbq`        | `sbq-app1`                         |
-| Service Bus topic               | `sbt`        | `sbt-app1`                         |
-| Service Bus topic subscription  | `sbts`       | `sbts-app1`                        |
+| Service Bus queue               | `sbq`        |                                    |
+| Service Bus topic               | `sbt`        |                                    |
+| Service Bus topic subscription  | `sbts`       |                                    |
 
 ## Management and Governance
 
-| Resource                            | Abbreviation      | API Endpoint Example |
+| Resource                            | Abbreviation      | API Endpoint Example           |
 | ----------------------------------- | ----------------- | ------------------------------ |
-| Automation account                  | `aa`              | `aa-app1`                      |
-| Azure Policy definition             | *\<descriptive\>* | `policy-deny-public-ip`        |
-| Application Insights                | `appi`            | `appi-app1`                    |
-| Azure Monitor action group          | `ag`              | `ag-app1`                      |
-| Azure Monitor data collection rule  | `dcr`             | `dcr-app1`                     |
-| Azure Monitor alert processing rule | `apr`             | `apr-app1`                     |
-| Data collection endpoint            | `dce`             | `dce-app1`                     |
-| Diagnostic settings                 | `ds`              | `ds-app1`                      |
-| Deployment scripts                  | `script`          | `script-app1`                  |
-| Log Analytics workspace             | `log`             | `log-app1`                     |
-| Log Analytics query packs           | `pack`            | `pack-app1`                    |
-| Management group                    | `mg`              | `mg-app1`                      |
+| Automation account                  | `aa`              |                                |
+| Azure Policy definition             | *\<descriptive\>* |                                |
+| Application Insights                | `appi`            |                                |
+| Azure Monitor action group          | `ag`              |                                |
+| Azure Monitor data collection rule  | `dcr`             |                                |
+| Azure Monitor alert processing rule | `apr`             |                                |
+| Data collection endpoint            | `dce`             |                                |
+| Diagnostic settings                 | `ds`              |                                |
+| Deployment scripts                  | `script`          |                                |
+| Log Analytics workspace             | `log`             |                                |
+| Log Analytics query packs           | `pack`            |                                |
+| Management group                    | `mg`              |                                |
 | Microsoft Purview instance          | `pview`           | `pview-app1.purview.azure.com` |
 | Resource group                      | rg                | rg-app1                        |
-| Template specs name                 | `ts`              | `ts-app1`                      |
+| Template specs name                 | `ts`              |                                |
 
 ## Migration
 
 | Resource                            | Abbreviation | API Endpoint Example |
-| ----------------------------------- | ------------ | ----------- |
-| Azure Migrate project               | `migr`       | `migr-app1` |
-| Database Migration Service instance | `dms`        | `dms-app1`  |
-| Recovery Services vault             | `rsv`        | `rsv-app1`  |
+| ----------------------------------- | ------------ | -------------------- |
+| Azure Migrate project               | `migr`       |                      |
+| Database Migration Service instance | `dms`        |                      |
+| Recovery Services vault             | `rsv`        |                      |
 
 ## Networking
 
-| Resource                                    | Abbreviation          | API Endpoint Example |
+| Resource                                    | Abbreviation          | API Endpoint Example                |
 | ------------------------------------------- | --------------------- | ----------------------------------- |
-| Application gateway                         | `agw`                 | `agw-app1`                          |
-| Application security group (ASG)            | `asg`                 | `asg-app1`                          |
-| CDN profile                                 | `cdnp`                | `cdnp-app1`                         |
+| Application gateway                         | `agw`                 |                                     |
+| Application security group (ASG)            | `asg`                 |                                     |
+| CDN profile                                 | `cdnp`                |                                     |
 | CDN endpoint                                | `cdne`                | `cdne-app1.azureedge.net`           |
-| Connections                                 | `con`                 | `con-app1`                          |
+| Connections                                 | `con`                 |                                     |
 | DNS                                         | *\<DNS domain name\>* | `contoso.com`                       |
-| DNS forwarding ruleset                      | `dnsfrs`              | `dnsfrs-app1`                       |
-| DNS private resolver                        | `dnspr`               | `dnspr-app1`                        |
-| DNS private resolver inbound endpoint       | `in`                  | `in-app1`                           |
-| DNS private resolver outbound endpoint      | `out`                 | `out-app1`                          |
+| DNS forwarding ruleset                      | `dnsfrs`              |                                     |
+| DNS private resolver                        | `dnspr`               |                                     |
+| DNS private resolver inbound endpoint       | `in`                  |                                     |
+| DNS private resolver outbound endpoint      | `out`                 |                                     |
 | DNS zone                                    | *\<DNS domain name\>* | `privatelink.blob.core.windows.net` |
-| Firewall                                    | `afw`                 | `afw-app1`                          |
-| Firewall policy                             | `afwp`                | `afwp-app1`                         |
-| ExpressRoute circuit                        | `erc`                 | `erc-app1`                          |
-| ExpressRoute direct                         | `erd`                 | `erd-app1`                          |
-| ExpressRoute gateway                        | `ergw`                | `ergw-app1`                         |
-| Front Door (Standard/Premium) profile       | `afd`                 | `afd-app1`                          |
+| Firewall                                    | `afw`                 |                                     |
+| Firewall policy                             | `afwp`                |                                     |
+| ExpressRoute circuit                        | `erc`                 |                                     |
+| ExpressRoute direct                         | `erd`                 |                                     |
+| ExpressRoute gateway                        | `ergw`                |                                     |
+| Front Door (Standard/Premium) profile       | `afd`                 |                                     |
 | Front Door (Standard/Premium) endpoint      | `fde`                 | `fde-app1.azurefd.net`              |
-| Front Door firewall policy                  | `fdfp`                | `fdfp-app1`                         |
+| Front Door firewall policy                  | `fdfp`                |                                     |
 | Front Door (classic)                        | `afd`                 | `afd-app1.azurefd.net`              |
-| IP group                                    | `ipg`                 | `ipg-app1`                          |
-| Load balancer (internal)                    | `lbi`                 | `lbi-app1`                          |
-| Load balancer (external)                    | `lbe`                 | `lbe-app1`                          |
-| Load balancer rule                          | `rule`                | `rule-app1`                         |
-| Local network gateway                       | `lgw`                 | `lgw-app1`                          |
-| NAT gateway                                 | `ng`                  | `ng-app1`                           |
-| Network interface (NIC)                     | `nic`                 | `nic-app1`                          |
-| Network security perimeter                  | `nsp`                 | `nsp-app1`                          |
-| Network security group (NSG)                | `nsg`                 | `nsg-app1`                          |
-| Network security group (NSG) security rules | `nsgsr`               | `nsgsr-app1`                        |
-| Network Watcher                             | `nw`                  | `nw-app1`                           |
-| Private Link                                | `pl`                  | `pl-app1`                           |
-| Private endpoint                            | `pe`                  | `pep-app1`                          |
-| Public IP address                           | `pip`                 | `pip-app1`                          |
-| Public IP address prefix                    | `ippre`               | `ippre-app1`                        |
-| Route filter                                | `rf`                  | `rf-app1`                           |
-| Route server                                | `rtserv`              | `rtserv-app1`                       |
-| Route table                                 | `rt`                  | `rt-app1`                           |
-| Service endpoint policy                     | `se`                  | `se-app1`                           |
+| IP group                                    | `ipg`                 |                                     |
+| Load balancer (internal)                    | `lbi`                 |                                     |
+| Load balancer (external)                    | `lbe`                 |                                     |
+| Load balancer rule                          | `rule`                |                                     |
+| Local network gateway                       | `lgw`                 |                                     |
+| NAT gateway                                 | `ng`                  |                                     |
+| Network interface (NIC)                     | `nic`                 |                                     |
+| Network security perimeter                  | `nsp`                 |                                     |
+| Network security group (NSG)                | `nsg`                 |                                     |
+| Network security group (NSG) security rules | `nsgsr`               |                                     |
+| Network Watcher                             | `nw`                  |                                     |
+| Private Link                                | `pl`                  |                                     |
+| Private endpoint                            | `pe`                  |                                     |
+| Public IP address                           | `pip`                 |                                     |
+| Public IP address prefix                    | `ippre`               |                                     |
+| Route filter                                | `rf`                  |                                     |
+| Route server                                | `rtserv`              |                                     |
+| Route table                                 | `rt`                  |                                     |
+| Service endpoint policy                     | `se`                  |                                     |
 | Traffic Manager profile                     | `traf`                | `traf-app1.trafficmanager.net`      |
-| User defined route (UDR)                    | `udr`                 | `udr-app1`                          |
-| Virtual network                             | `vnet`                | `vnet-app1`                         |
-| Virtual network gateway                     | `vgw`                 | `vgw-app1`                          |
-| Virtual network manager                     | `vnm`                 | `vnm-app1`                          |
-| Virtual network peering                     | `peer`                | `peer-app1`                         |
-| Virtual network subnet                      | `snet`                | `snet-app1`                         |
-| Virtual WAN                                 | `vwan`                | `vwan-app1`                         |
-| Virtual WAN Hub                             | `vhub`                | `vhub-app1`                         |
+| User defined route (UDR)                    | `udr`                 |                                     |
+| Virtual network                             | `vnet`                |                                     |
+| Virtual network gateway                     | `vgw`                 |                                     |
+| Virtual network manager                     | `vnm`                 |                                     |
+| Virtual network peering                     | `peer`                |                                     |
+| Virtual network subnet                      | `snet`                |                                     |
+| Virtual WAN                                 | `vwan`                |                                     |
+| Virtual WAN Hub                             | `vhub`                |                                     |
 
 ## Security
 
-| Resource                                         | Abbreviation | API Endpoint Example |
+| Resource                                         | Abbreviation | API Endpoint Example               |
 | ------------------------------------------------ | ------------ | ---------------------------------- |
-| Azure Bastion                                    | `bas`        | `bas-app1`                         |
+| Azure Bastion                                    | `bas`        |                                    |
 | Key vault                                        | `kv`         | `kv-app1.vault.azure.net`          |
 | Key Vault Managed HSM                            | `kvmhsm`     | `kvmhsm-app1.managedhsm.azure.net` |
-| Managed identity                                 | `id`         | `id-app1`                          |
-| SSH key                                          | `sshkey`     | `sshkey-app1`                      |
-| VPN Gateway                                      | `vpng`       | `vpng-app1`                        |
-| VPN connection                                   | `vcn`        | `vcn-app1`                         |
-| VPN site                                         | `vst`        | `vst-app1`                         |
-| Web Application Firewall (WAF) policy            | `waf`        | `waf-app1`                         |
-| Web Application Firewall (WAF) policy rule group | `wafrg`      | `wafrg-app1`                       |
+| Managed identity                                 | `id`         |                                    |
+| SSH key                                          | `sshkey`     |                                    |
+| VPN Gateway                                      | `vpng`       |                                    |
+| VPN connection                                   | `vcn`        |                                    |
+| VPN site                                         | `vst`        |                                    |
+| Web Application Firewall (WAF) policy            | `waf`        |                                    |
+| Web Application Firewall (WAF) policy rule group | `wafrg`      |                                    |
 
 ## Storage
 
-| Resource                  | Abbreviation | API Endpoint Example |
+| Resource                  | Abbreviation | API Endpoint Example           |
 | ------------------------- | ------------ | ------------------------------ |
-| Backup Vault name         | `bvault`     | `bvault-app1`                  |
-| Backup Vault policy       | `bkpol`      | `bkpol-app1`                   |
-| File share                | `share`      | `share-app1`                   |
+| Backup Vault name         | `bvault`     |                                |
+| Backup Vault policy       | `bkpol`      |                                |
+| File share                | `share`      |                                |
 | Storage account           | `st`         | `stapp1.blob.core.windows.net` |
-| Storage Sync Service name | `sss`        | `sss-app1`                     |
+| Storage Sync Service name | `sss`        |                                |
 
 ## Virtual Desktop Infrastructure
 
 | Resource                          | Abbreviation | API Endpoint Example |
-| --------------------------------- | ------------ | ---------------- |
-| Virtual desktop host pool         | `vdpool`     | `vdpool-app1`    |
-| Virtual desktop application group | `vdag`       | `vdag-app1`      |
-| Virtual desktop workspace         | `vdws`       | `vdws-app1`      |
-| Virtual desktop scaling plan      | `vdscaling`  | `vdscaling-app1` |
+| --------------------------------- | ------------ | -------------------- |
+| Virtual desktop host pool         | `vdpool`     |                      |
+| Virtual desktop application group | `vdag`       |                      |
+| Virtual desktop workspace         | `vdws`       |                      |
+| Virtual desktop scaling plan      | `vdscaling`  |                      |
 
 > **Disclaimer:** The API endpoint examples listed above are illustrative and may be inaccurate or outdated. Always refer to the [Azure documentation](https://learn.microsoft.com/en-us/azure) for the most current endpoint formats.
 
