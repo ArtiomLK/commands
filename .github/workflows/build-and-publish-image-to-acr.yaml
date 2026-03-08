@@ -16,6 +16,10 @@ on:
         required: false
         type: string
         default: 'latest'
+      RUNS_ON:
+        required: false
+        type: string
+        default: 'ubuntu-latest'
     secrets:
       ACR_LOGIN_SERVER:
         required: true
@@ -30,7 +34,7 @@ on:
 
 jobs:
   build-and-publish-container-image:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.RUNS_ON }}
     environment: ${{ inputs.ENVIRONMENT }}
     outputs:
       digest: ${{ steps.build-and-push.outputs.digest }}
